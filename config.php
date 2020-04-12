@@ -1,23 +1,24 @@
 <?php
 
-ini_set('memory_limit', '2048M');
-ini_set('user_agent', 'Mozilla/5.0');
-set_time_limit(3600);
-date_default_timezone_set("Asia/Bangkok");
+ini_set('memory_limit', '1024M');
+set_time_limit(600);
+date_default_timezone_set("Asia/Ho_Chi_Minh");
 
-define('DEVELOPER_KEY', 'AIzaSyCmmf1ifYYQkUd8P4QoDpiaxkQmDJtGt5M');
+define('DEVELOPER_KEY', 'AIzaSyBQNDAGcbVFBSdFNzbUP1SOgn-mkA7aN-U');
 
-define('DB_NAME', 'vps_down');
+// Database
+define('DB_NAME', 'youtube_comment');
 define('DB_USER', 'root');
 define('DB_PASSWORD', '');
 define('DB_HOST', 'localhost');
 define('DB_CHARSET', 'utf8mb4');
 define('DB_COLLATE', '');
 
-define('DOMAIN', 'http://localhost/vpsdown/');
-define('DOWNLOAD_FOLDER', 'cache_files');
-define('CACHE_DAY', 24); // by hour
+// User Config
+define('VERIFY_TIME', 3);
+define('MAX_ITEMS', 5);
 
+// Dev Only
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);

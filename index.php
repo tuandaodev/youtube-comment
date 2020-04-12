@@ -1,124 +1,135 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" href="favicon.ico">
-        <title>URL Shortener and Hider</title>
-    </head>
-    <?php 
-    
-    if (!session_id()) {
-        session_start();
-    }
-    
-    if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
-        
-    } else {
-        header('Location: login.php');
-        exit;
-    }
-    ?>
-    <body>
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href=".">URL Shortener and Hider</a>
-                </div>
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href=".">Generator</a></li>
-                    <li><a href="list.php">List Links</a></li>
-                    <li><a href="logout.php">Logout</a></li>
-                </ul>
-            </div>
-        </nav>
+<?php
+require_once 'layout\header.php';
 
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Checking Links
-                        </div>
-                        <div class="panel-body">
-                            <div class="row show-grid">
-                                <form method="POST" id="find_links_form">
-                                    <div class="col-md-12" id="error" style="display: none;">
-                                        <div class="alert alert-danger">
-                                            URL không được trống.
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Direct URL</label>
-                                            <input class="form-control" id="url" name="url">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Type</label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="type" id="type_general" value="1" checked="">Direct Link
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="type" id="type_drive" value="2">Google Drive
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="type" id="type_cloud_mail_ru" value="3">Cloud.mail.ru
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <input type="hidden" name="action" value="general_link"/>
-                                        <button type="submit" class="btn btn-success" value="submit">Submit</button>
-                                        <button type="reset" class="btn btn-default">Reset</button>
-                                    </div>
-                                </form>
-                                <div class="col-md-12" style="margin-top: 20px;">
-                                    <div class="form-group" id="result">
-                                    </div>
-                                </div>
+$dbModel = new DbModel();
+if (isset($_POST['action']) && !empty($_POST['action'])) {
+    switch ($_POST['action']) {
+        case 'option_main':
+            $dbModel->update_option('verify_number', $_POST['verify_number']);
+            $dbModel->update_option('items_number', $_POST['items_number']);
+            break;
+        case 'option_type_1':
+            $dbModel->update_option('help_1_image', $_POST['help_1_image']);
+            $dbModel->update_option('help_1_video', $_POST['help_1_video']);
+            break;
+        case 'option_type_2':
+            $dbModel->update_option('help_2_image', $_POST['help_2_image']);
+            $dbModel->update_option('help_2_video', $_POST['help_2_video']);
+            break;
+    }
+}
+
+$options = $dbModel->get_options();
+?>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Cấu hình
+            </div>
+            <div class="panel-body">
+                <div class="row show-grid">
+                    <form method="POST" id="find_links_form">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Số lần Verify</label>
+                                <input class="form-control" name="verify_number" value="<?php echo $options['verify_number'] ?? VERIFY_TIME ?>" placeholder="Nhập Số lần Verify">
                             </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Số Items</label>
+                                <input class="form-control" name="items_number" value="<?php echo $options['items_number'] ?? MAX_ITEMS ?>" placeholder="Nhập số items hiển thị">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="hidden" name="action" value="option_main"/>
+                            <button type="submit" class="btn btn-success" value="submit">Submit</button>
+                            <button type="reset" class="btn btn-default">Reset</button>
+                        </div>
+                    </form>
+                    <div class="col-md-12" style="margin-top: 20px;">
+                        <div class="form-group" id="result">
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <footer class="page-footer font-small teal pt-4">
-                <div class="footer-copyright py-3" style='text-align: right'>© 2018 Developer by
-                    <a href='skype:live:tuandao.dev?chat'> Tuan Dao</a>
-                </div>
-            </footer>
         </div>
+    </div>
+</div>
 
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/custom.css">
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                $("#find_links_form").submit(function(event){
-                    event.preventDefault();
-                    $("#error").hide();
-                    if( $("#url").val().length === 0 ) {
-                        $("#error").show();
-                        return;
-                    }
-                    var values = $(this).serialize();
-                    $.ajax({
-                        url: "action.php",
-                        type: "post",
-                        data: values,
-                        dataType: 'json',
-                        success: function (response) {
-                            if (response.status === "1") {
-                                $("#result").html(response.html);
-                            }
-                        },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                           console.log(textStatus, errorThrown);
-                        } 
-                    });
-                });
-            });
-        </script>
-    </body>
-</html>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Hướng dẫn cho Video
+            </div>
+            <div class="panel-body">
+                <div class="row show-grid">
+                    <form method="POST" id="find_links_form">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Ảnh hướng dẫn</label>
+                                <input class="form-control" name="help_1_image" value="<?php echo $options['help_1_image'] ?? '' ?>" placeholder="Nhập link ảnh">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Video Hướng dẫn</label>
+                                <textarea class="form-control" name="help_1_video" placeholder="Nhập iframe youtube"><?php echo urldecode($options['help_1_video']) ?? '' ?></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="hidden" name="action" value="option_type_1"/>
+                            <button type="submit" class="btn btn-success" value="submit">Submit</button>
+                            <button type="reset" class="btn btn-default">Reset</button>
+                        </div>
+                    </form>
+                    <div class="col-md-12" style="margin-top: 20px;">
+                        <div class="form-group" id="result">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Hướng dẫn cho Comment Link
+            </div>
+            <div class="panel-body">
+                <div class="row show-grid">
+                    <form method="POST" id="find_links_form">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Ảnh hướng dẫn</label>
+                                <input class="form-control" name="help_2_image" value="<?php echo $options['help_2_image'] ?? '' ?>" placeholder="Nhập link ảnh">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Video Hướng dẫn</label>
+                                <textarea class="form-control" name="help_2_video" placeholder="Nhập iframe youtube"><?php echo urldecode($options['help_2_video']) ?? '' ?></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="hidden" name="action" value="option_type_2"/>
+                            <button type="submit" class="btn btn-success" value="submit">Submit</button>
+                            <button type="reset" class="btn btn-default">Reset</button>
+                        </div>
+                    </form>
+                    <div class="col-md-12" style="margin-top: 20px;">
+                        <div class="form-group" id="result">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php
+require_once 'layout/footer.php';
+?>
