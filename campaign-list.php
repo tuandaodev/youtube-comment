@@ -89,12 +89,10 @@
                                                 <td><?php echo $item['btn_text'] ?></td>
                                                 <td><?php echo urldecode($item['landing_page']) ?></td>
                                                 <td class="text-center">
-                                                    <a href="edit-campaign.php?id=<?php echo $item['id'] ?>" class="btn btn-xs btn-primary" title="Edit item">Edit</a>
-                                                    <a href="campaign-content.php?campaign_id=<?php echo $item['id'] ?>" class="btn btn-xs btn-success" title="Manage Content">Manage</a>
-                                                    <button type="button" class="btn btn-xs btn-warning" title="Delete this item" onclick="deleteItem('<?php echo $item['id'] ?>')">Delete</button>
-                                                    <br/>
-                                                    <a style="margin-top: 10px" href="verify.php?cid=<?php echo $item['id'] ?>" target="_blank" class="btn btn-xs btn-danger" title="Verify Video">Verify Video</a>
-                                                    <a style="margin-top: 10px" href="verify-comment.php?cid=<?php echo $item['id'] ?>" target="_blank" class="btn btn-xs btn-danger" title="Verify Comment">Verify Comment</a>
+                                                    <a href="edit-campaign.php?id=<?php echo $item['id'] ?>" class="btn btn-primary" title="Edit item">Edit</a>
+                                                    <a href="campaign-content.php?campaign_id=<?php echo $item['id'] ?>" class="btn btn-success" title="Manage Content">Manage</a>
+                                                    <button type="button" class="btn btn-danger" title="Delete this item" onclick="deleteItem('<?php echo $item['id'] ?>')">Delete</button>
+                                                    <a href="verify.php?cid=<?php echo $item['id'] ?>" target="_blank" class="btn btn-warning" title="Verify Video">Verify Video</a>
                                                 </td>
                                             </tr>
                                             <?php } ?>

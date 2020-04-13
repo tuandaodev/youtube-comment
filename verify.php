@@ -125,18 +125,6 @@ $verifyTimes = $campaign['verify_number'] ?? 0;
                 }, 2000);
         }
     }
-
-    var showHow = false;
-
-    function showMeHow() {
-        if (showHow) {
-            showHow = false;
-            $('.showmehow').slideUp();
-        } else {
-            showHow = true;
-            $('.showmehow').slideDown();
-        }
-    }
 </script>
 
 </body>
