@@ -2,35 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cff9a964-e0cf-4208-b00d-3a7b629911bc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/campaign-content.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/campaign-list.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spinner.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/verify_old.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DbModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/action.php" beforeDir="false" afterPath="$PROJECT_DIR$/action.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment-list.php" beforeDir="false" afterPath="$PROJECT_DIR$/comment-list.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common.php" beforeDir="false" afterPath="$PROJECT_DIR$/render.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config apache2/apache2.conf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config apache2/my.cnf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config apache2/sites-available/000-default.conf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config apache2/sites-available/default-ssl.conf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/custom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edit-comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/edit-comment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edit-keyword.php" beforeDir="false" afterPath="$PROJECT_DIR$/edit-keyword.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fav.ico" beforeDir="false" afterPath="$PROJECT_DIR$/assets/fav.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/install-command" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/keyword-list.php" beforeDir="false" afterPath="$PROJECT_DIR$/keyword-list.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layout/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/layout/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new-comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/edit-campaign.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sub_function.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/campaign-content.php" beforeDir="false" afterPath="$PROJECT_DIR$/campaign-content.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campaign-list.php" beforeDir="false" afterPath="$PROJECT_DIR$/campaign-list.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edit-campaign.php" beforeDir="false" afterPath="$PROJECT_DIR$/edit-campaign.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/verify.php" beforeDir="false" afterPath="$PROJECT_DIR$/verify.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/verify_old.php" beforeDir="false" afterPath="$PROJECT_DIR$/verify_old.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/youtube_api.php" beforeDir="false" afterPath="$PROJECT_DIR$/youtube_api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +67,7 @@
       <option name="presentableId" value="Default" />
       <updated>1586695605152</updated>
       <workItem from="1586695608803" duration="23930000" />
-      <workItem from="1586741473739" duration="27926000" />
+      <workItem from="1586741473739" duration="33420000" />
     </task>
     <servers />
   </component>
@@ -107,10 +87,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="794" y="444" key="NewPhpFileDialog/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1586770688673" />
-    <state x="656" y="252" width="615" height="536" key="find.popup" timestamp="1586789227212">
+    <state x="656" y="252" width="615" height="536" key="find.popup" timestamp="1586794543233">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="252" width="615" height="536" key="find.popup/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1586789227212" />
+    <state x="656" y="252" width="615" height="536" key="find.popup/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1586794543233" />
     <state x="731" y="251" key="ftp.server.browser" timestamp="1586741631761">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

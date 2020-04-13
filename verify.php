@@ -6,6 +6,7 @@ require_once 'spinner.php';
 
 $dbModel = new DbModel();
 
+// Load Data
 $campaign_id = $_REQUEST['cid'];
 $campaign = $dbModel->get_campaign_by_id($campaign_id);
 if (!$campaign) {
@@ -14,33 +15,23 @@ if (!$campaign) {
 }
 $group = $dbModel->get_group_random($campaign_id);
 if (!$group) {
-    echo "Empty Group.";
-    exit;
-}
-$keyword = $dbModel->get_keyword_random($campaign_id);
-if (!$keyword) {
-    echo "Empty Keyword.";
+    echo "Empty Data";
     exit;
 }
 
-$video_ids = [];
-$video_list = [];
-//if (isset($keyword['video_list']) && !empty($keyword['video_list'])) {
-//    $video_list = json_decode($keyword['video_list'], true);
-//} else {
-    $result = get_video($video_ids, $keyword['content']);
-    if (isset($result['video_list'])) {
-//        $dbModel->update_keyword_video_list($keyword['id'], $result['video_list']);
-        $video_list = $result['video_list'];
-    }
-//}
+// Load Mapping Settings
+$temps = $dbModel->get_campaign_options_by_type($campaign_id, $group['type']);
+$settings = [];
+foreach ($temps as $item) {
+    $settings[$item['key']] = $item['value'];
+}
 
-$maxItems = $campaign['items_number'] ?? 0;
+$result = processData($campaign, $group, $settings);
+
+$url_list = $result['url_list'] ?? [];
+$comment_list = $result['comment_list'] ?? [];
+
 $verifyTimes = $campaign['verify_number'] ?? 0;
-
-$video_list = array_slice($video_list, 0, $maxItems);
-$comments = $dbModel->get_comment_random($campaign_id, $maxItems, 1);
-
 $spintax = new Spintax();
 
 ?>
@@ -60,20 +51,13 @@ $spintax = new Spintax();
 </head>
 <body>
 <div class="wrapper">
-    <div class="title"><b>POST THE COMMENTS BELOW TO YOUTUBE</b></div>
-    <div class="description"><p>To prevent robot abuse, you are required to complete human verification by posting each
-            comment below to the video on it's left.</p></div>
-    <?php if (isset($campaign['help_image']) && !empty($campaign['help_image'])): ?>
-        <p><img class="img-responsive" src="<?php echo urldecode($campaign['help_image']); ?>"></p>
-    <?php endif; ?>
 
-    <?php if (isset($campaign['help_video']) && !empty($campaign['help_video'])): ?>
-        <button class="showmehow_toggle" onclick="showMeHow()"><i class="fas fa-info-circle"></i> Show Me How</button>
-        <div class="showmehow">
-            <?php echo $campaign['help_video']; ?>
-        </div>
+    <?php if (isset($settings['header_html']) && !empty($settings['header_html'])): ?>
+            <?php echo $settings['header_html']; ?>
+    <?php else: ?>
+        <div class="title"><b>POST THE COMMENTS BELOW TO YOUTUBE</b></div>
+        <div class="description"><p>To prevent robot abuse, you are required to complete human verification by posting each comment below to the video on it's left.</p></div>
     <?php endif; ?>
-
 
     <table class="videos">
         <thead>
@@ -86,18 +70,18 @@ $spintax = new Spintax();
 
         <?php
         $count = 0;
-        foreach ($video_list as $video):
+        foreach ($url_list as $url):
             ?>
             <tr>
                 <td>
-                    <a class="youtube_link" data-id="<?php echo $count ?>"
-                       href="https://www.youtube.com/watch?v=<?php echo $video['id'] ?>" target="_blank">
-                        <img width="100" src="<?php echo $video['thumb'] ?? '' ?>" alt="Click here"></a>
+                    <a class="external_link" data-id="<?php echo $count ?>"
+                       href="<?php echo $url['url'] ?>" target="_blank">
+                        <img width="100" src="<?php echo $url['image'] ?? '' ?>" alt="Click here"></a>
                 </td>
                 <td id="text<?php echo $count ?>" class="notranslate select_text">
                     <?php
-                    if (isset($comments[$count]['content'])) {
-                        echo $spintax->process($comments[$count]['content']);
+                    if (isset($comment_list[$count])) {
+                        echo $spintax->process($comment_list[$count]);
                     }
                     $count++;
                     ?>
@@ -108,11 +92,15 @@ $spintax = new Spintax();
         ?>
         </tbody>
     </table>
-
-
-
-    <button class="btn" onclick="verify()"><?php echo $campaign['btn_text'] ?? 'Verify' ?></button>
+    <button class="btn btn-verify" onclick="verify()"><?php echo $campaign['btn_text'] ?? 'Verify' ?></button>
 </div>
+
+<?php if ($campaign['custom_css']): ?>
+<style>
+<?php echo $campaign['custom_css'] ?? '' ?>
+</style>
+<?php endif; ?>
+
 <script>
     var get = function (key) {
         return window.localStorage ? window.localStorage[key] : null;
@@ -126,7 +114,7 @@ $spintax = new Spintax();
         $(".select_text").bind('copy', function () {
             $(this).attr('check-condition', 1);
         });
-        $(".youtube_link").on('mousedown', function (e) {
+        $(".external_link").on('mousedown', function (e) {
             $("#text" + $(this).attr('data-id')).attr('check-youtube', 1);
         });
     });
@@ -177,3 +165,70 @@ $spintax = new Spintax();
 
 </body>
 </html>
+
+<?php
+
+function processData($campaign, $group, $settings) {
+    $result = [];
+    if ($group['type'] == 1) $result = processDataType1($campaign, $group, $settings);
+    if ($group['type'] == 2) $result = processDataType2($campaign, $group, $settings);
+    return $result;
+}
+
+function processDataType1($campaign, $group, $settings) {
+    // Process Data
+    $keywords = explode("\n", str_replace("\r", "", $group['keyword_list'] ?? []));
+    $keywords = array_map('trim', $keywords);
+    $keyword = $keywords[array_rand($keywords, 1)];
+
+    $comment_list = explode("\n", str_replace("\r", "", $group['comment_list'] ?? []));
+    $comment_list = array_map('trim', $comment_list);
+
+    $result = get_video($keyword);
+    $video_list = $result['video_list'] ?? [];
+    $maxItems = $settings['items_number'] ?? 0;
+    shuffle($video_list);
+    $url_list = array_slice($video_list, 0, $maxItems);
+    shuffle($comment_list);
+    $comment_list = array_slice($comment_list, 0, $maxItems);
+
+    $result['comment_list'] = $comment_list;
+    $result['url_list'] = $url_list;
+    return $result;
+}
+
+function processDataType2($campaign, $group, $settings) {
+    // Process Data
+    $keywords = explode("\n", str_replace("\r", "", $group['keyword_list'] ?? []));
+    $keywords = array_map('trim', $keywords);
+    $keyword = $keywords[array_rand($keywords, 1)];
+
+    $comment_list = explode("\n", str_replace("\r", "", $group['comment_list'] ?? []));
+    $comment_list = array_map('trim', $comment_list);
+
+    $maxItems = $settings['items_number'] ?? 0;
+
+    $result = get_comment($keyword, $maxItems);
+    $video_list = $result['comment_list'] ?? [];
+    shuffle($video_list);
+    $url_list = [];
+    $video_exists = [];
+    $count = 0;
+    foreach ($video_list as $video) {
+        if ($count >= $maxItems) break;
+        if (!in_array($video['video_id'], $video_exists)) {
+            $url_list[] = $video;
+            $video_exists[] = $video['video_id'];
+            $count++;
+        }
+    }
+
+    shuffle($comment_list);
+    $comment_list = array_slice($comment_list, 0, $maxItems);
+
+    $result['comment_list'] = $comment_list;
+    $result['url_list'] = $url_list;
+    return $result;
+}
+
+?>

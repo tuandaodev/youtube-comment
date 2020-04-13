@@ -7,7 +7,7 @@ $return['status'] = "0";
 
 $dbModel = new DbModel();
 
-$accept_options = ['header_html', 'items_number', 'help_image', 'help_video'];
+$accept_options = ['header_html', 'items_number'];
 
 if (isset($_POST['action'])) {
     switch ($_POST['action']) {
@@ -143,6 +143,13 @@ if (isset($_POST['action'])) {
                 $result = "<label>Có lỗi trong quá trình generate link. Vui lòng thử lại.</label>";
                 $return['status'] = "1";
                 $return['html'] = $result;
+            }
+            break;
+        case 'delete_group':
+            $id = $_POST['id'];
+            $result = $dbModel->delete_group($id);
+            if ($result) {
+                $return['status'] = "1";
             }
             break;
         case 'delete_comment':

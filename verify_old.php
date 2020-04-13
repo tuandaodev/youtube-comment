@@ -59,16 +59,7 @@ $spintax = new Spintax();
     <div class="title"><b>POST THE COMMENTS BELOW TO YOUTUBE</b></div>
     <div class="description"><p>To prevent robot abuse, you are required to complete human verification by posting each
             comment below to the video on it's left.</p></div>
-    <?php if (isset($campaign['help_image']) && !empty($campaign['help_image'])): ?>
-        <p><img class="img-responsive" src="<?php echo urldecode($campaign['help_image']); ?>"></p>
-    <?php endif; ?>
 
-    <?php if (isset($campaign['help_video']) && !empty($campaign['help_video'])): ?>
-        <button class="showmehow_toggle" onclick="showMeHow()"><i class="fas fa-info-circle"></i> Show Me How</button>
-        <div class="showmehow">
-            <?php echo $campaign['help_video']; ?>
-        </div>
-    <?php endif; ?>
     <table class="videos">
         <thead>
         <tr>

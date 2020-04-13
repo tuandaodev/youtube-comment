@@ -24,7 +24,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Số lần Verify</label>
-                                            <input class="form-control" name="verify_number" value="<?php echo VERIFY_TIME ?>" required placeholder="Nhập Số lần Verify">
+                                            <input class="form-control" name="verify_number" type="number" min="0" value="1" required placeholder="Nhập Số lần Verify">
                                         </div>
                                     </div>
                                     <div class="col-md-6">

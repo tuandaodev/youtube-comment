@@ -183,6 +183,12 @@ class DbModel {
 
     }
 
+    public function delete_group($id) {
+        $query = "DELETE FROM `groups` WHERE id = $id";
+        $result = mysqli_query($this->link, $query);
+        return $result;
+    }
+
     public function delete_comment($id) {
         $query = "DELETE FROM comment WHERE id = $id";
         $result = mysqli_query($this->link, $query);
@@ -251,7 +257,7 @@ class DbModel {
         $btn_text = mysqli_real_escape_string($this->link, $data['btn_text']);
         $custom_css = mysqli_real_escape_string($this->link, $data['custom_css'] ?? '');
 
-        $query = '  INSERT INTO campaign(name, verify_number, help_image, help_video, landing_page, btn_text, custom_css)
+        $query = '  INSERT INTO campaign(name, verify_number, landing_page, btn_text, custom_css)
                         VALUES (
                         "' . $name . '",
                         "' . $verify_number . '",
@@ -354,6 +360,7 @@ class DbModel {
     }
 
     public function update_campaign_type_setting($campaign_id, $type, $key, $value) {
+        $value = mysqli_real_escape_string($this->link, $value);
         $query = "  UPDATE `options`
                     SET options.value = '$value'
                     WHERE options.campaign_id = '$campaign_id' AND options.type = '$type' AND `options`.`key` = '$key'";

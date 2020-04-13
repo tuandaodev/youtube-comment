@@ -248,7 +248,7 @@ $list = $dbModel->get_all_group($campaign_id);
                         <tr>
                             <th>No</th>
                             <th>Type</th>
-                            <th>Content</th>
+                            <th>Group Name</th>
                             <th>Options</th>
                         </tr>
                         </thead>
@@ -320,7 +320,7 @@ $list = $dbModel->get_all_group($campaign_id);
             }
             var data = {};
             data.id = id;
-            data.action = 'delete_keyword';
+            data.action = 'delete_group';
 
             $.ajax({
                 url: "action.php",
