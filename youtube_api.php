@@ -271,6 +271,36 @@ function get_commentThreads($service, $video_id, $maxResults = 10)
     return $result;
 }
 
+function get_video_image($video_id)
+{
+    if (!$video_id) return '';
+
+    $client = new Google_Client();
+    $client->setDeveloperKey(DEVELOPER_KEY);
+    $youtube = new Google_Service_YouTube($client);
+
+    try {
+        $response = $youtube->videos->listVideos('snippet', array(
+            'id' => $video_id
+        ));
+        $videoArr = [];
+        if (isset($response['items']) && !empty($response['items'])) {
+            $videoArr = $response['items'][0];
+        }
+        $thumb = '';
+        if (isset($videoArr['snippet']['thumbnails']['medium']['url']) && !empty($videoArr['snippet']['thumbnails']['medium']['url'])) {
+            $thumb = $videoArr['snippet']['thumbnails']['medium']['url'];
+        } elseif (isset($videoArr['snippet']['thumbnails']['default']['url']) && !empty($videoArr['snippet']['thumbnails']['default']['url'])) {
+            $thumb = $videoArr['snippet']['thumbnails']['default']['url'];
+        }
+        return $thumb;
+    } catch (Google_Service_Exception $e) {
+    } catch (Google_Exception $e) {
+    }
+
+    return '';
+}
+
 function commentThreadsListByVideoId($service, $part, $params)
 {
     try {

@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cff9a964-e0cf-4208-b00d-3a7b629911bc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/edit-content.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DbModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/action.php" beforeDir="false" afterPath="$PROJECT_DIR$/action.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/campaign-content.php" beforeDir="false" afterPath="$PROJECT_DIR$/campaign-content.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campaign-list.php" beforeDir="false" afterPath="$PROJECT_DIR$/campaign-list.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edit-campaign.php" beforeDir="false" afterPath="$PROJECT_DIR$/edit-campaign.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/verify.php" beforeDir="false" afterPath="$PROJECT_DIR$/verify.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/verify_old.php" beforeDir="false" afterPath="$PROJECT_DIR$/verify_old.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/youtube_api.php" beforeDir="false" afterPath="$PROJECT_DIR$/youtube_api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +65,7 @@
       <option name="presentableId" value="Default" />
       <updated>1586695605152</updated>
       <workItem from="1586695608803" duration="23930000" />
-      <workItem from="1586741473739" duration="33420000" />
+      <workItem from="1586741473739" duration="38699000" />
     </task>
     <servers />
   </component>

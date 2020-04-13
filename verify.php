@@ -25,14 +25,18 @@ $settings = [];
 foreach ($temps as $item) {
     $settings[$item['key']] = $item['value'];
 }
-
 $result = processData($campaign, $group, $settings);
 
 $url_list = $result['url_list'] ?? [];
 $comment_list = $result['comment_list'] ?? [];
 
+if (count($url_list) <> count($comment_list)) {
+    $maxItems = min(count($url_list), count($comment_list));
+    $comment_list = array_slice($comment_list, 0, $maxItems);
+    $url_list = array_slice($url_list, 0, $maxItems);
+}
+
 $verifyTimes = $campaign['verify_number'] ?? 0;
-$spintax = new Spintax();
 
 ?>
 <!DOCTYPE html>
@@ -59,39 +63,11 @@ $spintax = new Spintax();
         <div class="description"><p>To prevent robot abuse, you are required to complete human verification by posting each comment below to the video on it's left.</p></div>
     <?php endif; ?>
 
-    <table class="videos">
-        <thead>
-        <tr>
-            <th>Open video</th>
-            <th>Comment</th>
-        </tr>
-        </thead>
-        <tbody>
+    <?php
+        if ($group['type'] == 5) renderTableCustom($group, $url_list, $comment_list);
+        else renderTable($group, $url_list, $comment_list);
+    ?>
 
-        <?php
-        $count = 0;
-        foreach ($url_list as $url):
-            ?>
-            <tr>
-                <td>
-                    <a class="external_link" data-id="<?php echo $count ?>"
-                       href="<?php echo $url['url'] ?>" target="_blank">
-                        <img width="100" src="<?php echo $url['image'] ?? '' ?>" alt="Click here"></a>
-                </td>
-                <td id="text<?php echo $count ?>" class="notranslate select_text">
-                    <?php
-                    if (isset($comment_list[$count])) {
-                        echo $spintax->process($comment_list[$count]);
-                    }
-                    $count++;
-                    ?>
-                </td>
-            </tr>
-        <?php
-        endforeach;
-        ?>
-        </tbody>
-    </table>
     <button class="btn btn-verify" onclick="verify()"><?php echo $campaign['btn_text'] ?? 'Verify' ?></button>
 </div>
 
@@ -168,10 +144,89 @@ $spintax = new Spintax();
 
 <?php
 
+function renderTable($group, $url_list, $comment_list) {
+    $spintax = new Spintax();
+?>
+    <table class="videos">
+        <thead>
+        <tr>
+            <th>Open video</th>
+            <th>Comment</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <?php
+        $count = 0;
+        foreach ($url_list as $url):
+            ?>
+            <tr>
+                <td>
+                    <a class="external_link" data-id="<?php echo $count ?>"
+                       href="<?php echo $url['url'] ?>" target="_blank">
+                        <img width="100" src="<?php echo $url['image'] ?? '' ?>" alt="Click here"></a>
+                </td>
+                <td id="text<?php echo $count ?>" class="notranslate select_text">
+                    <?php
+                    if (isset($comment_list[$count])) {
+                        echo $spintax->process($comment_list[$count]);
+                    }
+                    $count++;
+                    ?>
+                </td>
+            </tr>
+        <?php
+        endforeach;
+        ?>
+        </tbody>
+    </table>
+<?php
+}
+
+function renderTableCustom($group, $url_list, $comment_list) {
+    $spintax = new Spintax();
+    ?>
+    <table class="videos">
+        <thead>
+        <tr>
+            <th>Keyword</th>
+            <th>Channel/Website</th>
+            <th>Comment</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <?php
+        $count = 0;
+        foreach ($url_list as $url):
+            ?>
+            <tr>
+                <td><?php echo $group['keyword_list'] ?? '' ?></td>
+                <td><?php echo $group['channel'] ?? '' ?></td>
+                <td id="text<?php echo $count ?>" class="notranslate select_text">
+                    <?php
+                    if (isset($comment_list[$count])) {
+                        echo $spintax->process($comment_list[$count]);
+                    }
+                    $count++;
+                    ?>
+                </td>
+            </tr>
+        <?php
+        endforeach;
+        ?>
+        </tbody>
+    </table>
+    <?php
+}
+
 function processData($campaign, $group, $settings) {
     $result = [];
     if ($group['type'] == 1) $result = processDataType1($campaign, $group, $settings);
     if ($group['type'] == 2) $result = processDataType2($campaign, $group, $settings);
+    if ($group['type'] == 3) $result = processDataType34($campaign, $group, $settings);
+    if ($group['type'] == 4) $result = processDataType34($campaign, $group, $settings);
+    if ($group['type'] == 5) $result = processDataTypeCustom($campaign, $group, $settings);
     return $result;
 }
 
@@ -221,6 +276,74 @@ function processDataType2($campaign, $group, $settings) {
             $video_exists[] = $video['video_id'];
             $count++;
         }
+    }
+
+    shuffle($comment_list);
+    $comment_list = array_slice($comment_list, 0, $maxItems);
+
+    $result['comment_list'] = $comment_list;
+    $result['url_list'] = $url_list;
+    return $result;
+}
+
+function processDataType34($campaign, $group, $settings) {
+    // Process Data
+
+    // Get Video Thumb From URL
+    $video_url = urldecode($group['url']);
+    $parts = parse_url($video_url);
+    if ($parts['query'] ?? false) {
+        parse_str($parts['query'], $query);
+        $video_id = $query['v'] ?? '';
+        $video_image = get_video_image($video_id);
+    }
+
+    $comment_list = explode("\n", str_replace("\r", "", $group['comment_list'] ?? []));
+    $comment_list = array_map('trim', $comment_list);
+
+    $maxItems = $settings['items_number'] ?? 1;
+
+    $url_list = [];
+    $count = 0;
+    while ($count < $maxItems) {
+        $_temp['url'] = $video_url;
+        $_temp['image'] = $video_image ?? 'https://via.placeholder.com/200x150?text=No%20Image';
+        $url_list[] = $_temp;
+        $count++;
+    }
+
+    shuffle($comment_list);
+    $comment_list = array_slice($comment_list, 0, $maxItems);
+
+    $result['comment_list'] = $comment_list;
+    $result['url_list'] = $url_list;
+    return $result;
+}
+
+function processDataTypeCustom($campaign, $group, $settings) {
+    // Process Data
+
+    // Get Video Thumb From URL
+    $video_url = urldecode($group['url']);
+    $parts = parse_url($video_url);
+    if ($parts['query'] ?? false) {
+        parse_str($parts['query'], $query);
+        $video_id = $query['v'] ?? '';
+        $video_image = get_video_image($video_id);
+    }
+
+    $comment_list = explode("\n", str_replace("\r", "", $group['comment_list'] ?? []));
+    $comment_list = array_map('trim', $comment_list);
+
+    $maxItems = $settings['items_number'] ?? 1;
+
+    $url_list = [];
+    $count = 0;
+    while ($count < $maxItems) {
+        $_temp['url'] = $video_url;
+        $_temp['image'] = $video_image ?? 'https://via.placeholder.com/200x150?text=No%20Image';
+        $url_list[] = $_temp;
+        $count++;
     }
 
     shuffle($comment_list);

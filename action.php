@@ -58,6 +58,18 @@ if (isset($_POST['action'])) {
                 $return['html'] = $result;
             }
             break;
+        case 'update_campaign_content':
+            $result = $dbModel->update_campaign_content($_POST);
+            if ($result) {
+                $result = "<label>Cập nhật content thành công.</label>";
+                $return['status'] = 1;
+                $return['html'] = $result;
+            } else {
+                $result = "<label>Có lỗi. Vui lòng thử lại.</label>";
+                $return['status'] = 0;
+                $return['html'] = $result;
+            }
+            break;
         case 'add_campaign':
             $result = $dbModel->insert_campaign($_POST);
             if ($result) {

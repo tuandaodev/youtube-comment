@@ -100,6 +100,19 @@ class DbModel {
         return [];
     }
 
+    public function get_group_by_id($id) {
+
+        $query = "SELECT * FROM `groups` WHERE id = '$id' LIMIT 1";
+
+        $result = mysqli_query($this->link, $query);
+
+        if ($result) {
+            $return = mysqli_fetch_assoc($result);
+            if ($return) return $return;
+        }
+        return [];
+    }
+
     public function get_comment_random($campaign_id = null, $limit_number = 4, $type = 1) {
 
         $where = '';
@@ -225,6 +238,25 @@ class DbModel {
             if ($return) return $return;
         }
         return [];
+    }
+
+    public function update_campaign_content($data) {
+        $group_id = $data['id'] ?? 0;
+        $group_name = mysqli_real_escape_string($this->link, $data['group_name'] ?? '');
+        $keyword_list = mysqli_real_escape_string($this->link, $data['keyword_list'] ?? '');
+        $comment_list = mysqli_real_escape_string($this->link, $data['comment_list'] ?? '');
+        $channel = mysqli_real_escape_string($this->link, $data['channel'] ?? '');
+        $url = mysqli_real_escape_string($this->link, $data['url'] ?? '');
+
+        $query = '  UPDATE `groups` 
+                    SET group_name = "' . $group_name . '",
+                    keyword_list = "' . $keyword_list . '",
+                    comment_list = "' . $comment_list . '",
+                    channel = "' . $channel . '",
+                    url = "' . urlencode($url) . '"
+                    WHERE id = ' . $group_id;
+        $result = mysqli_query($this->link, $query);
+        return $result;
     }
 
     public function insert_campaign_content($data) {

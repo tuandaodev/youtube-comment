@@ -4,17 +4,15 @@ require_once 'layout/header.php';
 
 <?php
 $dbModel = new DbModel();
+$group_id = $_REQUEST['group_id'];
 $campaign_id = $_REQUEST['campaign_id'];
 
-$campaign = $dbModel->get_campaign_by_id($campaign_id);
-if (isset($campaign['id']) && !empty($campaign['id'])) {
-    //
-} else {
-    echo 'Missing Campaign Id';
+$group = $dbModel->get_group_by_id($group_id);
+if (!$group) {
+    echo "NOT FOUND ITEM";
     exit;
 }
-
-$list = $dbModel->get_all_group($campaign_id);
+$type = $group['type'] ?? 0;
 
 
 ?>
@@ -22,205 +20,205 @@ $list = $dbModel->get_all_group($campaign_id);
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Add Content</div>
+                <div class="panel-heading">Edit Content</div>
                 <div class="panel-body">
                     <div class="col-lg-12">
                         <div class="row">
                             <div class="group-tabs">
                                 <!-- Nav tabs -->
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#generated-videos"
-                                                                              aria-controls="generated-videos" role="tab"
-                                                                              data-toggle="tab">Generated Videos</a></li>
-                                    <li role="presentation"><a href="#generated-comment-links"
-                                                               aria-controls="generated-comment-links" role="tab"
-                                                               data-toggle="tab">Generated Comment links</a></li>
-                                    <li role="presentation"><a href="#specific-video"
-                                                               aria-controls="specific-video" role="tab"
-                                                               data-toggle="tab">Specific Video</a></li>
-                                    <li role="presentation"><a href="#specific-comment-link"
-                                                               aria-controls="specific-comment-link" role="tab"
-                                                               data-toggle="tab">Specific Comment Link</a></li>
-                                    <li role="presentation"><a href="#custom-tasks"
-                                                               aria-controls="custom-tasks" role="tab"
-                                                               data-toggle="tab">Custom Tasks</a></li>
+                                    <li role="presentation" <?php disableTabClass($type, 1) ?> ><a <?php disableTabClass($type, 1) ?> href="#generated-videos"
+                                                                                                                                      aria-controls="generated-videos" role="tab"
+                                                                                                                                      data-toggle="tab">Generated Videos</a></li>
+                                    <li role="presentation" <?php disableTabClass($type, 2) ?> ><a <?php disableTabClass($type, 2) ?> href="#generated-comment-links"
+                                                                                                                                      aria-controls="generated-comment-links" role="tab"
+                                                                                                                                      data-toggle="tab">Generated Comment links</a></li>
+                                    <li role="presentation" <?php disableTabClass($type, 3) ?> ><a <?php disableTabClass($type, 3) ?> href="#specific-video"
+                                                                                                                                      aria-controls="specific-video" role="tab"
+                                                                                                                                      data-toggle="tab">Specific Video</a></li>
+                                    <li role="presentation" <?php disableTabClass($type, 4) ?> ><a <?php disableTabClass($type, 4) ?> href="#specific-comment-link"
+                                                                                                                                      aria-controls="specific-comment-link" role="tab"
+                                                                                                                                      data-toggle="tab">Specific Comment Link</a></li>
+                                    <li role="presentation" <?php disableTabClass($type, 5) ?> ><a <?php disableTabClass($type, 5) ?> href="#custom-tasks"
+                                                                                                                                      aria-controls="custom-tasks" role="tab"
+                                                                                                                                      data-toggle="tab">Custom Tasks</a></li>
                                 </ul>
                                 <!-- Tab panes -->
                                 <div class="tab-content">
-                                    <div role="tabpanel" class="tab-pane active" id="generated-videos">
+                                    <div role="tabpanel" class="tab-pane <?php activeTab($type, 1) ?>" id="generated-videos">
                                         <div class="panel-body">
-                                            <form method="POST" class="add_form">
+                                            <form method="POST" class="update_form">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Group Name</label>
-                                                        <input class="form-control" name="group_name" required value=""
+                                                        <input class="form-control" name="group_name" required value="<?php echo $group['group_name'] ?? '' ?>"
                                                                placeholder="Nhập tên group keyword">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Keyword List</label>
-                                                        <textarea class="form-control" name="keyword_list" required
-                                                                  placeholder="Nhập danh sách keyword"></textarea>
+                                                        <textarea rows="10" class="form-control" name="keyword_list" required
+                                                                  placeholder="Nhập danh sách keyword"><?php echo $group['keyword_list'] ?? '' ?></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Comment List</label>
-                                                        <textarea class="form-control" name="comment_list" required
-                                                                  placeholder="Nhập danh sách comment"></textarea>
+                                                        <textarea rows="10" class="form-control" name="comment_list" required
+                                                                  placeholder="Nhập danh sách comment"><?php echo $group['comment_list'] ?? '' ?></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <input type="hidden" name="campaign_id" value="<?php echo $campaign['id'] ?>"/>
-                                                    <input type="hidden" name="action" value="add_campaign_content"/>
+                                                    <input type="hidden" name="id" value="<?php echo $group['id'] ?? 0 ?>"/>
+                                                    <input type="hidden" name="action" value="update_campaign_content"/>
                                                     <input type="hidden" name="type" value="1"/>
-                                                    <button type="submit" class="btn btn-success" value="submit">Add
+                                                    <button type="submit" class="btn btn-success" value="submit">Update
                                                     </button>
                                                     <button type="reset" class="btn btn-default">Reset</button>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
-                                    <div role="tabpanel" class="tab-pane" id="generated-comment-links">
+                                    <div role="tabpanel" class="tab-pane <?php activeTab($type, 2) ?>" id="generated-comment-links">
                                         <div class="panel-body">
-                                            <form method="POST" class="add_form">
+                                            <form method="POST" class="update_form">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Group Name</label>
-                                                        <input class="form-control" name="group_name" required value=""
+                                                        <input class="form-control" name="group_name" required value="<?php echo $group['group_name'] ?? '' ?>"
                                                                placeholder="Nhập tên group keyword">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Keyword List</label>
-                                                        <textarea class="form-control" name="keyword_list" required
-                                                                  placeholder="Nhập danh sách keyword"></textarea>
+                                                        <textarea rows="10" class="form-control" name="keyword_list" required
+                                                                  placeholder="Nhập danh sách keyword"><?php echo $group['keyword_list'] ?? '' ?></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Comment List</label>
-                                                        <textarea class="form-control" name="comment_list" required
-                                                                  placeholder="Nhập danh sách comment"></textarea>
+                                                        <textarea rows="10" class="form-control" name="comment_list" required
+                                                                  placeholder="Nhập danh sách comment"><?php echo $group['comment_list'] ?? '' ?></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <input type="hidden" name="campaign_id" value="<?php echo $campaign['id'] ?>"/>
-                                                    <input type="hidden" name="action" value="add_campaign_content"/>
+                                                    <input type="hidden" name="id" value="<?php echo $group['id'] ?? 0 ?>"/>
+                                                    <input type="hidden" name="action" value="update_campaign_content"/>
                                                     <input type="hidden" name="type" value="2"/>
-                                                    <button type="submit" class="btn btn-success" value="submit">Add
+                                                    <button type="submit" class="btn btn-success" value="submit">Update
                                                     </button>
                                                     <button type="reset" class="btn btn-default">Reset</button>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
-                                    <div role="tabpanel" class="tab-pane" id="specific-video">
+                                    <div role="tabpanel" class="tab-pane <?php activeTab($type, 3) ?>" id="specific-video">
                                         <div class="panel-body">
-                                            <form method="POST" class="add_form">
+                                            <form method="POST" class="update_form">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Video Group Name</label>
-                                                        <input class="form-control" name="group_name" required value=""
+                                                        <input class="form-control" name="group_name" required value="<?php echo $group['group_name'] ?? '' ?>"
                                                                placeholder="Nhập tên group keyword">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Video URL</label>
-                                                        <input class="form-control" name="url" value="" required
+                                                        <input class="form-control" name="url" value="<?php echo urldecode($group['url']) ?? '' ?>" required
                                                                placeholder="Nhập video URL"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Comment List</label>
-                                                        <textarea class="form-control" name="comment_list" required
-                                                                  placeholder="Nhập danh sách comment"></textarea>
+                                                        <textarea rows="10" class="form-control" name="comment_list" required
+                                                                  placeholder="Nhập danh sách comment"><?php echo $group['comment_list'] ?? '' ?></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <input type="hidden" name="campaign_id" value="<?php echo $campaign['id'] ?>"/>
-                                                    <input type="hidden" name="action" value="add_campaign_content"/>
+                                                    <input type="hidden" name="id" value="<?php echo $group['id'] ?? 0 ?>"/>
+                                                    <input type="hidden" name="action" value="update_campaign_content"/>
                                                     <input type="hidden" name="type" value="3"/>
-                                                    <button type="submit" class="btn btn-success" value="submit">Add
+                                                    <button type="submit" class="btn btn-success" value="submit">Update
                                                     </button>
                                                     <button type="reset" class="btn btn-default">Reset</button>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
-                                    <div role="tabpanel" class="tab-pane" id="specific-comment-link">
+                                    <div role="tabpanel" class="tab-pane <?php activeTab($type, 4) ?>" id="specific-comment-link">
                                         <div class="panel-body">
-                                            <form method="POST" class="add_form">
+                                            <form method="POST" class="update_form">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Comment Link Group Name</label>
-                                                        <input class="form-control" name="group_name" required value=""
+                                                        <input class="form-control" name="group_name" required value="<?php echo $group['group_name'] ?? '' ?>"
                                                                placeholder="Nhập tên group comment link">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Comment URL</label>
-                                                        <input class="form-control" name="url" value="" required
+                                                        <input class="form-control" name="url" value="<?php echo urldecode($group['url']) ?? '' ?>" required
                                                                placeholder="Nhập youtube comment URL"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Comment List</label>
-                                                        <textarea class="form-control" name="comment_list" required placeholder="Nhập danh sách comment"></textarea>
+                                                        <textarea rows="10" class="form-control" name="comment_list" required placeholder="Nhập danh sách comment"><?php echo $group['comment_list'] ?? '' ?></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <input type="hidden" name="campaign_id" value="<?php echo $campaign['id'] ?>"/>
-                                                    <input type="hidden" name="action" value="add_campaign_content"/>
+                                                    <input type="hidden" name="id" value="<?php echo $group['id'] ?? 0 ?>"/>
+                                                    <input type="hidden" name="action" value="update_campaign_content"/>
                                                     <input type="hidden" name="type" value="4"/>
-                                                    <button type="submit" class="btn btn-success" value="submit">Add
+                                                    <button type="submit" class="btn btn-success" value="submit">Update
                                                     </button>
                                                     <button type="reset" class="btn btn-default">Reset</button>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
-                                    <div role="tabpanel" class="tab-pane" id="custom-tasks">
+                                    <div role="tabpanel" class="tab-pane <?php activeTab($type, 5) ?>" id="custom-tasks">
                                         <div class="panel-body">
-                                            <form method="POST" class="add_form">
+                                            <form method="POST" class="update_form">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Custom Task Group Name</label>
-                                                        <input class="form-control" name="group_name" required value=""
+                                                        <input class="form-control" name="group_name" required value="<?php echo $group['group_name'] ?? '' ?>"
                                                                placeholder="Nhập tên group">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Keyword</label>
-                                                        <input class="form-control" name="keyword_list" value="" required placeholder="Nhập keyword"/>
+                                                        <input class="form-control" name="keyword_list" value="<?php echo $group['keyword_list'] ?? '' ?>" required placeholder="Nhập keyword"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Channel/Website Name</label>
-                                                        <input class="form-control" name="channel" value=""
+                                                        <input class="form-control" name="channel" value="<?php echo $group['channel'] ?? '' ?>"
                                                                required placeholder="Nhập tên Channel/Website"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Comment List</label>
-                                                        <textarea class="form-control" name="comment_list" required
-                                                                  placeholder="Nhập danh sách comment"></textarea>
+                                                        <textarea rows="10" class="form-control" name="comment_list" required
+                                                                  placeholder="Nhập danh sách comment"><?php echo $group['comment_list'] ?? '' ?></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <input type="hidden" name="campaign_id" value="<?php echo $campaign['id'] ?>"/>
-                                                    <input type="hidden" name="action" value="add_campaign_content"/>
+                                                    <input type="hidden" name="id" value="<?php echo $group['id'] ?? 0 ?>"/>
+                                                    <input type="hidden" name="action" value="update_campaign_content"/>
                                                     <input type="hidden" name="type" value="5"/>
-                                                    <button type="submit" class="btn btn-success" value="submit">Add
+                                                    <button type="submit" class="btn btn-success" value="submit">Update
                                                     </button>
                                                     <button type="reset" class="btn btn-default">Reset</button>
                                                 </div>
@@ -237,51 +235,17 @@ $list = $dbModel->get_all_group($campaign_id);
     </div>
 
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">Content List
-                </div>
-                <div class="panel-body">
-                    <table id="list_links" class="table table-striped table-bordered" style="width:100%">
-                        <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Type</th>
-                            <th>Group Name</th>
-                            <th>Options</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        foreach ($list as $item) {
-                            ?>
-                            <tr id="urlItem_<?php echo $item['id'] ?>">
-                                <td><?php echo $item['id'] ?></td>
-                                <td><?php echo campaign_type_name($item['type']) ?></td>
-                                <td><?php echo $item['group_name'] ?></td>
-                                <td class="text-center">
-                                    <a href="edit-content.php?group_id=<?php echo $item['id'] ?>&campaign_id=<?php echo $campaign_id ?>"
-                                       class="btn btn-xs btn-primary" title="Edit item">Edit</a>
-                                    <button type="button" class="btn btn-xs btn-danger" title="Delete this item"
-                                            onclick="deleteItem('<?php echo $item['id'] ?>')">Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="//cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
-
-            $(".add_form").submit(function (event) {
+            $(".nav-tabs a[data-toggle=tab]").on("click", function(e) {
+                if ($(this).hasClass("disabled")) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            $(".update_form").submit(function (event) {
                 event.preventDefault();
                 var values = $(this).serialize();
                 $.ajax({
@@ -290,13 +254,13 @@ $list = $dbModel->get_all_group($campaign_id);
                     data: values,
                     dataType: 'json',
                     success: function (response) {
-                        if (response.status == 1) {
-                            var html = '<div class="alert alert-success">' + response.html + '</div>'
-                            $("#result").html(html);
-                            location.reload();
-                        } else {
-                            var html = '<div class="alert alert-danger">' + response.html + '</div>'
-                            $("#result").html(html);
+                        if (response.status == "1" || response.status == 1) {
+                            var r = confirm("Update successful. Back to campaign content list.");
+                            if (r == true) {
+                                window.location.href = 'campaign-content.php?campaign_id=<?php echo $campaign_id; ?>';
+                            } else {
+                                return;
+                            }
                         }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
@@ -353,4 +317,13 @@ require_once 'layout/footer.php';
 function campaign_type_name($type) {
     $names = ['Generated Videos', 'Generated Comment Links', 'Specific Video', 'Specific Comment Link', 'Custom Tasks'];
     return $names[$type-1] ?? 'Unknown';
+}
+
+function disableTabClass($type, $currentType) {
+    if ($type == $currentType) echo 'class="active"';
+    else echo 'class="disabled"';
+}
+
+function activeTab($type, $currentType) {
+    if ($type == $currentType) echo 'active';
 }
