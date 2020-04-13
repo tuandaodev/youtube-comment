@@ -16,7 +16,7 @@ define('DB_COLLATE', '');
 
 // User Config
 define('VERIFY_TIME', 3);
-define('MAX_ITEMS', 5);
+define('MAX_ITEMS', 2);
 
 // Dev Only
 ini_set('display_errors', 1);

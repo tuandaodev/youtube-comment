@@ -4,7 +4,13 @@
 
 <?php
     $dbModel = new DbModel();
-    $list = $dbModel->get_all_keyword();
+    $campaign_id = $_REQUEST['campaign_id'];
+    $list = $dbModel->get_all_keyword($campaign_id);
+
+    if (!$campaign_id) {
+        echo 'Missing Campaign Id';
+        exit;
+    }
 ?>
 
             <div class="row">
@@ -18,11 +24,12 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Keyword</label>
-                                            <input class="form-control" id="content" name="content" required>
+                                            <textarea class="form-control" id="content" name="content" placeholder="Mỗi dòng là một keyword" rows="5" required></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <input type="hidden" name="action" value="add_keyword"/>
+                                        <input type="hidden" name="campaign_id" value="<?php echo $campaign_id ?>"/>
                                         <button type="submit" class="btn btn-success" value="submit">Submit</button>
                                         <button type="reset" class="btn btn-default">Reset</button>
                                     </div>
@@ -59,7 +66,7 @@
                                                 <td><?php echo $item['id'] ?></td>
                                                 <td><?php echo $item['content'] ?></td>
                                                 <td class="text-center">
-                                                    <a href="edit-keyword.php?id=<?php echo $item['id'] ?>" class="btn btn-xs btn-primary" title="Edit item">Edit</a><button type="button" class="btn btn-xs btn-danger" title="Delete this item" onclick="deleteItem('<?php echo $item['id'] ?>')">Delete</button>
+                                                    <a href="edit-keyword.php?id=<?php echo $item['id'] ?>&campaign_id=<?php echo $campaign_id ?>" class="btn btn-xs btn-primary" title="Edit item">Edit</a><button type="button" class="btn btn-xs btn-danger" title="Delete this item" onclick="deleteItem('<?php echo $item['id'] ?>')">Delete</button>
                                                 </td>
                                             </tr>
                                             <?php } ?>

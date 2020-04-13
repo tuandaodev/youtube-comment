@@ -12,11 +12,7 @@ if (!$campaign) {
     echo "Campaign Not Found";
     exit;
 }
-$group = $dbModel->get_group_random($campaign_id);
-if (!$group) {
-    echo "Empty Group.";
-    exit;
-}
+
 $keyword = $dbModel->get_keyword_random($campaign_id);
 if (!$keyword) {
     echo "Empty Keyword.";
@@ -25,15 +21,15 @@ if (!$keyword) {
 
 $video_ids = [];
 $video_list = [];
-//if (isset($keyword['video_list']) && !empty($keyword['video_list'])) {
-//    $video_list = json_decode($keyword['video_list'], true);
-//} else {
+if (isset($keyword['video_list']) && !empty($keyword['video_list'])) {
+    $video_list = json_decode($keyword['video_list'], true);
+} else {
     $result = get_video($video_ids, $keyword['content']);
     if (isset($result['video_list'])) {
-//        $dbModel->update_keyword_video_list($keyword['id'], $result['video_list']);
+        $dbModel->update_keyword_video_list($keyword['id'], $result['video_list']);
         $video_list = $result['video_list'];
     }
-//}
+}
 
 $maxItems = $campaign['items_number'] ?? 0;
 $verifyTimes = $campaign['verify_number'] ?? 0;
@@ -73,8 +69,6 @@ $spintax = new Spintax();
             <?php echo $campaign['help_video']; ?>
         </div>
     <?php endif; ?>
-
-
     <table class="videos">
         <thead>
         <tr>
@@ -108,9 +102,6 @@ $spintax = new Spintax();
         ?>
         </tbody>
     </table>
-
-
-
     <button class="btn" onclick="verify()"><?php echo $campaign['btn_text'] ?? 'Verify' ?></button>
 </div>
 <script>

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" href="./fav.ico">
+        <link rel="shortcut icon" href="./assets/fav.ico">
         <title>Youtube Comment Generator</title>
     </head>
     <?php 
@@ -28,13 +28,12 @@
     ?>
 
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
     <script src="//code.jquery.com/jquery-3.3.1.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="css/custom.css">
+
     <body>
         <nav class="navbar navbar-default">
             <div class="container-fluid">
@@ -42,9 +41,10 @@
                     <a class="navbar-brand" href=".">Youtube Comment Generator</a>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li <?php if ($current_page == 'index.php') echo 'class="active"'; ?> ><a href=".">Options</a></li>
-                    <li <?php if ($current_page == 'keyword-list.php') echo 'class="active"'; ?> ><a href="./keyword-list.php">Keyword List</a></li>
-                    <li <?php if ($current_page == 'comment-list.php') echo 'class="active"'; ?> ><a href="./comment-list.php">Comment List</a></li>
+                    <li <?php if ($current_page == 'campaign-list.php') echo 'class="active"'; ?> ><a href="./campaign-list.php">Campaign List</a></li>
+<!--                    <li --><?php //if ($current_page == 'index.php') echo 'class="active"'; ?><!-- ><a href=".">Options</a></li>-->
+<!--                    <li --><?php //if ($current_page == 'keyword-list.php') echo 'class="active"'; ?><!-- ><a href="./keyword-list.php">Keyword List</a></li>-->
+<!--                    <li --><?php //if ($current_page == 'comment-list.php') echo 'class="active"'; ?><!-- ><a href="./comment-list.php">Comment List</a></li>-->
                     <li><a href="./logout.php">Logout</a></li>
                 </ul>
             </div>

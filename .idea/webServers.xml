@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="d5d471cc-fca0-43de-89f1-d8ae5e579c87" name="dev@freelancerhcm.com" url="https://freelancerhcm.com/youtube">
+        <fileTransfer host="freelancerhcm.com" port="21" rootFolder="/freelancerhcm.com/youtube">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

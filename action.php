@@ -7,12 +7,91 @@ $return['status'] = "0";
 
 $dbModel = new DbModel();
 
+$accept_options = ['header_html', 'items_number', 'help_image', 'help_video'];
+
 if (isset($_POST['action'])) {
     switch ($_POST['action']) {
-        case 'add_keyword':
-            $content = $_POST['content'];
-            $result = $dbModel->insert_keyword($content);
+        case 'setup_type_setting':
+
+            $campaign_id = $_POST['campaign_id'] ?? 0;
+            $type = $_POST['type'] ?? 0;
+            // options
+            $header_html = $_POST['header_html'] ?? '';
+            $exists = $dbModel->get_campaign_options_by_type($campaign_id, $type);
+            $exist_options = array_column($exists, 'key');
+
+            $count_success = 0;
+            foreach ($_POST as $key => $value) {
+                // Accept value
+                if (in_array($key, $accept_options)) {
+                    if (in_array($key, $exist_options)) {
+                        // Update
+                        $result = $dbModel->update_campaign_type_setting($campaign_id, $type, $key, $value);
+                        if ($result) $count_success++;
+                    } else {
+                        // Insert
+                        $result = $dbModel->insert_campaign_type_option($campaign_id, $type, $key, $value);
+                        if ($result) $count_success++;
+                    }
+                }
+            }
+
+            if ($count_success > 0) {
+                $result = "<label>Cài đặt thành công.</label>";
+                $return['status'] = 1;
+                $return['html'] = $result;
+            } else {
+                $result = "<label>Có lỗi. Vui lòng thử lại.</label>";
+                $return['status'] = 0;
+                $return['html'] = $result;
+            }
+            break;
+        case 'add_campaign_content':
+            $result = $dbModel->insert_campaign_content($_POST);
             if ($result) {
+                $result = "<label>Tạo content thành công.</label>";
+                $return['status'] = 1;
+                $return['html'] = $result;
+            } else {
+                $result = "<label>Có lỗi. Vui lòng thử lại.</label>";
+                $return['status'] = 0;
+                $return['html'] = $result;
+            }
+            break;
+        case 'add_campaign':
+            $result = $dbModel->insert_campaign($_POST);
+            if ($result) {
+                $result = "<label>Tạo campaign thành công.</label>";
+                $return['status'] = 1;
+                $return['html'] = $result;
+            } else {
+                $result = "<label>Có lỗi. Vui lòng thử lại.</label>";
+                $return['status'] = 0;
+                $return['html'] = $result;
+            }
+            break;
+        case 'update_campaign':
+            $id = $_POST['id'];
+            $result = $dbModel->update_campaign($id, $_POST);
+            if ($result) $return['status'] = "1";
+            break;
+        case 'add_keyword':
+            $campaign_id = $_POST['campaign_id'];
+
+            $input_keyword = $_POST['content'];
+            $count_success = 0;
+            if (!empty($input_keyword) || $input_keyword != '') {
+                $keywords = explode("\n", str_replace("\r", "", $input_keyword));
+                $keywords = array_map('trim', $keywords);
+                foreach ($keywords as $key => $value) {
+                    if ($value) {
+                        $result = $dbModel->insert_keyword($value, $campaign_id);
+                        if ($result) $count_success++;
+                    }
+                }
+            }
+
+            if ($count_success > 0) {
                 $result = "<label>Tạo keyword thành công.</label>";
                 $return['status'] = 1;
                 $return['html'] = $result;
@@ -23,10 +102,22 @@ if (isset($_POST['action'])) {
             }
             break;
         case 'add_comment':
-            $content = $_POST['content'];
+            $input_keyword = $_POST['content'];
+            $campaign_id = $_POST['campaign_id'];
             $type = $_POST['type'];
-            $result = $dbModel->insert_comment($content, $type);
-            if ($result) {
+            $count_success = 0;
+            if (!empty($input_keyword) || $input_keyword != '') {
+                $keywords = explode("\n", str_replace("\r", "", $input_keyword));
+                $keywords = array_map('trim', $keywords);
+                foreach ($keywords as $key => $value) {
+                    if ($value) {
+                        $result = $dbModel->insert_comment($campaign_id, $value, $type);
+                        if ($result) $count_success++;
+                    }
+                }
+            }
+
+            if ($count_success > 0) {
                 $result = "<label>Tạo comment thành công.</label>";
                 $return['status'] = 1;
                 $return['html'] = $result;
@@ -57,6 +148,13 @@ if (isset($_POST['action'])) {
         case 'delete_comment':
             $comment_id = $_POST['id'];
             $result = $dbModel->delete_comment($comment_id);
+            if ($result) {
+                $return['status'] = "1";
+            }
+            break;
+        case 'delete_campaign':
+            $id = $_POST['id'];
+            $result = $dbModel->delete_campaign($id);
             if ($result) {
                 $return['status'] = "1";
             }

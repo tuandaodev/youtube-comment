@@ -6,6 +6,8 @@
     $url_id = $_GET['id'];
     $dbModel = new DbModel();
     $item = $dbModel->get_keyword_by_id($url_id);
+
+    $campaign_id = $_REQUEST['campaign_id'];
     
     ?>
 
@@ -44,7 +46,7 @@
         </div>
 
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/custom.css">
+        <link rel="stylesheet" href="assets/css/custom.css">
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
         <script>
@@ -61,7 +63,7 @@
                             if (response.status === "1") {
                                 var r = confirm("Update successful. Back to list.");
                                 if (r == true) {
-                                    window.location.href = 'keyword-list.php';
+                                    window.location.href = 'keyword-list.php?campaign_id=<?php echo $campaign_id ?>';
                                 } else {
                                     return;
                                 }
