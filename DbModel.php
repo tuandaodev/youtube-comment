@@ -27,11 +27,8 @@ class DbModel {
     
     public function check_login($username, $password) {
         $query = "SELECT * FROM `users` WHERE username='$username' and password='$password'";
-        
         $result = mysqli_query($this->link, $query);
-        
         $count = mysqli_num_rows($result);
-        
         if ($count > 0) {
             return true;
         } else {
@@ -218,7 +215,7 @@ class DbModel {
     }
 
     public function get_all_campaign() {
-        $query = "SELECT * FROM campaign order by id DESC";
+        $query = "SELECT *, (SELECT count(*) FROM groups WHERE groups.campaign_id = campaign.id) as count_items FROM campaign order by id DESC";
         $result = mysqli_query($this->link, $query);
         if ($result) {
             $return = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -324,9 +321,26 @@ class DbModel {
     public function delete_campaign($id) {
         $query = "DELETE FROM campaign WHERE id = $id";
         $result = mysqli_query($this->link, $query);
-        $query = "DELETE FROM comment WHERE campaign_id = $id";
+        $query = "DELETE FROM `groups` WHERE campaign_id = $id";
         $result = mysqli_query($this->link, $query);
-        $query = "DELETE FROM keyword WHERE campaign_id = $id";
+        $query = "DELETE FROM `options` WHERE campaign_id = $id";
+        $result = mysqli_query($this->link, $query);
+        return $result;
+    }
+
+    public function clone_campaign($id) {
+        $query = "INSERT INTO campaign(`name`, verify_number, landing_page, btn_text, custom_css) SELECT concat(name, ' - Copy'), verify_number, landing_page, btn_text, custom_css FROM campaign WHERE id = $id";
+        $result = mysqli_query($this->link, $query);
+        $new_campaign_id = mysqli_insert_id($this->link);
+
+        $query = "  INSERT INTO `groups`(group_name, campaign_id, type, keyword_list, comment_list, channel, url) 
+                    SELECT group_name, $new_campaign_id, type, keyword_list, comment_list, channel, url 
+                    FROM `groups` WHERE campaign_id = $id;";
+        $result = mysqli_query($this->link, $query);
+
+        $query = "  INSERT INTO `options`(`campaign_id`, `type`, `key`, `value`) 
+                    SELECT $new_campaign_id, `type`, `key`, `value` 
+                    FROM `options` WHERE campaign_id = $id;";
         $result = mysqli_query($this->link, $query);
         return $result;
     }

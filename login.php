@@ -1,16 +1,15 @@
-<html lang="en" class="gr__blackrockdigital_github_io"><head>
+<html lang="en" class="gr__blackrockdigital_github_io">
+<head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Login - URL Shortener and Hider</title>
-
+    <link rel="shortcut icon" href="./assets/fav.ico">
+    <title>Youtube Comment Generator</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/custom.css">
-    
 </head>
 <?php 
 
@@ -59,7 +58,10 @@ if (isset($_POST['username']) and isset($_POST['password'])){
     }
 } else {
     if (isset($_COOKIE[$cookie_name]) && !empty($_COOKIE[$cookie_name])) {
-        parse_str($_COOKIE[$cookie_name]);
+        parse_str($_COOKIE[$cookie_name], $auth);
+        $username = $auth['username'];
+        $hash = $auth['hash'];
+
         $dbModel = new DbModel();
         $check = $dbModel->check_login($username, $hash);
         if ($check) {

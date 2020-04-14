@@ -18,7 +18,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Tên chiến dịch</label>
-                                            <input class="form-control" name="name" value="" maxlength="256" required>
+                                            <input class="form-control" name="name" value="" maxlength="256" placeholder="Nhập tên chiến dịch" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -30,7 +30,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Landing Page URL</label>
-                                            <input class="form-control" name="landing_page" value="" maxlength="512" placeholder="Nhập trang đích của chiến dịch">
+                                            <input class="form-control" type="url" name="landing_page" value="" maxlength="512" placeholder="Nhập trang đích của chiến dịch">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -75,6 +75,7 @@
                                             <th>Verify</th>
                                             <th>Btn Text</th>
                                             <th>Landing Page</th>
+                                            <th>Count</th>
                                             <th>Options</th>
                                         </tr>
                                     </thead>
@@ -88,10 +89,13 @@
                                                 <td><?php echo $item['verify_number'] ?></td>
                                                 <td><?php echo $item['btn_text'] ?></td>
                                                 <td><?php echo urldecode($item['landing_page']) ?></td>
+                                                <td><?php echo $item['count_items'] ?? 0 ?></td>
                                                 <td class="text-center">
                                                     <a href="edit-campaign.php?id=<?php echo $item['id'] ?>" class="btn btn-primary" title="Edit item">Edit</a>
                                                     <a href="campaign-content.php?campaign_id=<?php echo $item['id'] ?>" class="btn btn-success" title="Manage Content">Manage</a>
                                                     <button type="button" class="btn btn-danger" title="Delete this item" onclick="deleteItem('<?php echo $item['id'] ?>')">Delete</button>
+                                                    <button type="button" class="btn btn-primary" title="Clone this item" onclick="cloneItem('<?php echo $item['id'] ?>')">Clone</button>
+                                                    <button type="button" class="btn btn-success" title="Export this item" onclick="exportItem('<?php echo $item['id'] ?>')">Export</button>
                                                     <a href="verify.php?cid=<?php echo $item['id'] ?>" target="_blank" class="btn btn-warning" title="Verify Video">Verify Video</a>
                                                 </td>
                                             </tr>
@@ -167,6 +171,67 @@
             }
         });
     };
+
+    function cloneItem(id) {
+
+        var r = confirm("Do you want to clone this campaign?");
+        if (r == true) {
+        } else {
+            return;
+        }
+
+        var data = {};
+        data.id = id;
+        data.action = 'clone_campaign';
+
+        $.ajax({
+            url: "action.php",
+            type: "post",
+            data: data,
+            dataType: 'json',
+            success: function (response) {
+                console.log(response);
+                if (response.status == 1) {
+                    alert('Clone success');
+                    window.location.reload();
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
+            }
+        });
+    };
+
+    function exportItem(id) {
+
+        var r = confirm("Do you want to export data of this campaign?");
+        if (r == true) {
+        } else {
+            return;
+        }
+
+        var data = {};
+        data.id = id;
+        data.action = 'export_campaign';
+
+        $.ajax({
+            url: "action.php",
+            type: "post",
+            data: data,
+            dataType: 'json',
+            success: function (response) {
+                console.log(response);
+                if (response.status == 1) {
+                    alert('Export success. Copy export.php and export.json to other hosting.');
+                    window.location.reload();
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
+            }
+        });
+    };
+
 </script>
 <style>
     table.table-bordered.dataTable tbody td {

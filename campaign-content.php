@@ -130,7 +130,7 @@ $list = $dbModel->get_all_group($campaign_id);
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Video URL</label>
-                                                        <input class="form-control" name="url" value="" required
+                                                        <input class="form-control" type="url" name="url" value="" required
                                                                placeholder="Nhập video URL"/>
                                                     </div>
                                                 </div>
@@ -165,7 +165,7 @@ $list = $dbModel->get_all_group($campaign_id);
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Comment URL</label>
-                                                        <input class="form-control" name="url" value="" required
+                                                        <input class="form-control" type="url" name="url" value="" required
                                                                placeholder="Nhập youtube comment URL"/>
                                                     </div>
                                                 </div>

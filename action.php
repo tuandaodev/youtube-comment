@@ -1,6 +1,7 @@
 <?php
 
 require_once('DbModel.php');
+require_once 'functions.php';
 
 $return = array();
 $return['status'] = "0";
@@ -139,24 +140,6 @@ if (isset($_POST['action'])) {
                 $return['html'] = $result;
             }
             break;
-        case 'general_link':
-            $orginal_url = $_POST['url'];
-            $type = $_POST['type'];
-            $uid = uniqid();
-
-            $result = $dbModel->insert_url($uid, $orginal_url, $type);
-
-            if ($result) {
-                $output_url = DOMAIN . "download.php?id=$uid";
-                $result = "<label>Kết quả:</label><input class='form-control' value='$output_url'>";
-                $return['status'] = "1";
-                $return['html'] = $result;
-            } else {
-                $result = "<label>Có lỗi trong quá trình generate link. Vui lòng thử lại.</label>";
-                $return['status'] = "1";
-                $return['html'] = $result;
-            }
-            break;
         case 'delete_group':
             $id = $_POST['id'];
             $result = $dbModel->delete_group($id);
@@ -175,6 +158,23 @@ if (isset($_POST['action'])) {
             $id = $_POST['id'];
             $result = $dbModel->delete_campaign($id);
             if ($result) {
+                $return['status'] = "1";
+            }
+            break;
+        case 'clone_campaign':
+            $id = $_POST['id'];
+            $result = $dbModel->clone_campaign($id);
+            if ($result) {
+                $return['status'] = "1";
+            }
+            break;
+        case 'export_campaign':
+            $id = $_POST['id'];
+            $data['campaign'] = $dbModel->get_campaign_by_id($id);
+            $data['groups'] = $dbModel->get_all_group($id);
+            $data['settings'] = $dbModel->get_campaign_options_all($id);
+            export_data($data);
+            if ($data) {
                 $return['status'] = "1";
             }
             break;

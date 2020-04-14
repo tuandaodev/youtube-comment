@@ -128,7 +128,7 @@ $type = $group['type'] ?? 0;
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Video URL</label>
-                                                        <input class="form-control" name="url" value="<?php echo urldecode($group['url']) ?? '' ?>" required
+                                                        <input class="form-control" type="url" name="url" value="<?php echo urldecode($group['url']) ?? '' ?>" required
                                                                placeholder="Nhập video URL"/>
                                                     </div>
                                                 </div>
@@ -163,7 +163,7 @@ $type = $group['type'] ?? 0;
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Comment URL</label>
-                                                        <input class="form-control" name="url" value="<?php echo urldecode($group['url']) ?? '' ?>" required
+                                                        <input class="form-control" type="url" name="url" value="<?php echo urldecode($group['url']) ?? '' ?>" required
                                                                placeholder="Nhập youtube comment URL"/>
                                                     </div>
                                                 </div>

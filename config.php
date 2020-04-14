@@ -14,6 +14,13 @@ define('DB_HOST', 'localhost');
 define('DB_CHARSET', 'utf8mb4');
 define('DB_COLLATE', '');
 
+//define('DB_NAME', 'streamap_youtube');
+//define('DB_USER', 'streamap_youtube');
+//define('DB_PASSWORD', 'B6Bn!~qclBgb');
+//define('DB_HOST', 'localhost');
+//define('DB_CHARSET', 'utf8mb4');
+//define('DB_COLLATE', '');
+
 // User Config
 define('VERIFY_TIME', 3);
 define('MAX_ITEMS', 2);
