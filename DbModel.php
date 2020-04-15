@@ -184,6 +184,7 @@ class DbModel {
         $group_id = $data['id'] ?? 0;
         $group_name = mysqli_real_escape_string($this->link, $data['group_name'] ?? '');
         $keyword_list = mysqli_real_escape_string($this->link, $data['keyword_list'] ?? '');
+        $keyword = mysqli_real_escape_string($this->link, $data['keyword'] ?? '');
         $comment_list = mysqli_real_escape_string($this->link, $data['comment_list'] ?? '');
         $custom_html = mysqli_real_escape_string($this->link, $data['custom_html'] ?? '');
         $url = mysqli_real_escape_string($this->link, $data['url'] ?? '');
@@ -191,6 +192,7 @@ class DbModel {
         $query = '  UPDATE `groups` 
                     SET group_name = "' . $group_name . '",
                     keyword_list = "' . $keyword_list . '",
+                    keyword = "' . $keyword . '",
                     comment_list = "' . $comment_list . '",
                     custom_html = "' . $custom_html . '",
                     url = "' . urlencode($url) . '"
@@ -204,16 +206,18 @@ class DbModel {
         $campaign_id = $data['campaign_id'] ?? 0;
         $type = $data['type'] ?? 0;
         $keyword_list = mysqli_real_escape_string($this->link, $data['keyword_list'] ?? '');
+        $keyword = mysqli_real_escape_string($this->link, $data['keyword'] ?? '');
         $comment_list = mysqli_real_escape_string($this->link, $data['comment_list'] ?? '');
         $url = mysqli_real_escape_string($this->link, $data['url'] ?? '');
         $custom_html = mysqli_real_escape_string($this->link, $data['custom_html'] ?? '');
 
-        $query = '  INSERT INTO `groups`(group_name, campaign_id, `type`, keyword_list, comment_list, `custom_html`, url)
+        $query = '  INSERT INTO `groups`(group_name, campaign_id, `type`, keyword_list, keyword, comment_list, `custom_html`, url)
                         VALUES (
                         "' . $group_name . '",
                         "' . $campaign_id . '",
                         "' . $type . '",
                         "' . $keyword_list . '",
+                        "' . $keyword . '",
                         "' . $comment_list . '",
                         "' . $custom_html . '",
                         "' . urlencode($url) . '"

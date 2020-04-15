@@ -95,11 +95,18 @@ $list = $dbModel->get_all_group($campaign_id);
                                 <div role="tabpanel" class="tab-pane" id="generated-comment-links">
                                     <div class="panel-body">
                                         <form method="POST" class="add_form">
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Group Name</label>
                                                     <input class="form-control" name="group_name" required value=""
                                                            placeholder="Nhập tên group keyword">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Keyword</label>
+                                                    <input class="form-control" name="keyword" required value=""
+                                                           placeholder="Nhập tên keyword">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">

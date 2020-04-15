@@ -89,11 +89,18 @@ $type = $group['type'] ?? 0;
                                     <div role="tabpanel" class="tab-pane <?php activeTab($type, 2) ?>" id="generated-comment-links">
                                         <div class="panel-body">
                                             <form method="POST" class="update_form">
-                                                <div class="col-md-12">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Group Name</label>
                                                         <input class="form-control" name="group_name" required value="<?php echo $group['group_name'] ?? '' ?>"
                                                                placeholder="Nhập tên group keyword">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Keyword</label>
+                                                        <input class="form-control" name="keyword" required value="<?php echo $group['keyword'] ?? '' ?>"
+                                                               placeholder="Nhập tên keyword">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">

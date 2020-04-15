@@ -124,27 +124,24 @@ $verifyTimes = $campaign['verify_number'] ?? 0;
                 }
             });
             if (check) {
-                if (ytname != '' || ytname == null || ytname.length == 0) {
-                    ytname = prompt("Enter your Youtube Name");
-                }
+                // if (ytname != '' || ytname == null || ytname.length == 0) {
+                //     ytname = prompt("Enter your Youtube Name");
+                // }
                 var verify_count = get('verify_count');
-                console.log(verify_count);
                 if (!verify_count) verify_count = 0;
-                if (ytname != '' && ytname != null || ytname.length == 0) {
-                    $("#btn-verify").html('Processing...');
-                    $("#btn-verify").attr("disabled", true);
-                    setTimeout(function () {
-                        verify_count = parseInt(verify_count) + 1;
-                        if (verify_count >= <?php echo $verifyTimes ?>) {
-                            put('verify_count', 0);
-                            window.location.href = "<?php echo urldecode($campaign['landing_page']) ?>";
-                        } else {
-                            put('verify_count', verify_count);
-                            alert("Verification failed! Your comments coundn't be found.");
-                            window.location.reload();
-                        }
-                    }, 2000);
-                }
+                $("#btn-verify").html('Processing...');
+                $("#btn-verify").attr("disabled", true);
+                setTimeout(function () {
+                    verify_count = parseInt(verify_count) + 1;
+                    if (verify_count >= <?php echo $verifyTimes ?>) {
+                        put('verify_count', 0);
+                        window.location.href = "<?php echo urldecode($campaign['landing_page']) ?>";
+                    } else {
+                        put('verify_count', verify_count);
+                        alert("Verification failed! Your comments coundn't be found.");
+                        window.location.reload();
+                    }
+                }, 2000);
             }
         }
     </script>
@@ -310,7 +307,8 @@ function processDataType2($campaign, $group, $settings) {
 
     $maxItems = $settings['items_number'] ?? 0;
 
-    $result = youtube_get_comments($keyword, $maxItems);
+    $search_key_word = $group['keyword'] ?? '';
+    $result = youtube_get_comments($keyword, $search_key_word, $maxItems);
     $video_list = $result['comment_list'] ?? [];
     shuffle($video_list);
     $url_list = [];
@@ -409,19 +407,18 @@ function youtube_get_videos($keyword) {
 }
 
 
-function youtube_get_comments($keyword, $maxVideos, $maxResults = 50)
+function youtube_get_comments($keyword, $search_key_word, $maxVideos, $maxResults = 50)
 {
     $video_list = youtube_get_videos($keyword);
     $video_list = $video_list['video_list'] ?? [];
     $list_id = array_column($video_list, 'id');
     shuffle($list_id);
-    $list_id = array_slice($list_id, 0, $maxVideos + 1);
 
     $comment_list = [];
 
     $count_success = 0;
     foreach ($list_id as $video_id) {
-        $temp = youtube_get_comment($keyword, $video_id);
+        $temp = youtube_get_comment($video_id, $search_key_word);
         if (!empty($temp)) {
             $count_success++;
             foreach ($temp as $comment_id) {
@@ -444,15 +441,16 @@ function get_video_image($video_id)
     return "https://i.ytimg.com/vi/$video_id/mqdefault.jpg";
 }
 
-function youtube_get_comment($keyword, $video_id) {
+function youtube_get_comment($video_id, $search_key_word) {
 
     $url = 'https://www.googleapis.com/youtube/v3/commentThreads';
     $data = [
         'part' => 'id,snippet',
         'videoId' => $video_id,
-        'maxResults' => 20,
+        'maxResults' => 50,
         'order' => 'relevance',
-        'key' => DEVELOPER_KEY
+        'key' => DEVELOPER_KEY,
+        'searchTerms' => $search_key_word
     ];
     $response = api_call($url, $data);
     $data_single = json_decode($response, true) ?? [];
@@ -460,7 +458,10 @@ function youtube_get_comment($keyword, $video_id) {
     $result = [];
     if (isset($data_single['items'])) {
         foreach ($data_single['items'] as $comment) {
-            $result[] = $comment['id'];
+            $comment_text = $comment['snippet']['topLevelComment']['snippet']['textOriginal'] ?? '';
+            if (strpos($comment_text, $search_key_word) !== false) {
+                $result[] = $comment['id'];
+            }
         }
     }
     return $result;

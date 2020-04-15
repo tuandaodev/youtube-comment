@@ -96,7 +96,7 @@
                                                     <button type="button" class="btn btn-danger" title="Delete this item" onclick="deleteItem('<?php echo $item['id'] ?>')">Delete</button>
                                                     <button type="button" class="btn btn-primary" title="Clone this item" onclick="cloneItem('<?php echo $item['id'] ?>')">Clone</button>
                                                     <a href="export_zip.php?campaign_id=<?php echo $item['id'] ?>" class="btn btn-success" title="Export this item">Export</a>
-                                                    <a href="verify.php?cid=<?php echo $item['id'] ?>" target="_blank" class="btn btn-warning" title="Verify Video">Verify Video</a>
+                                                    <a href="verify.php?cid=<?php echo $item['id'] ?>" target="_blank" class="btn btn-warning" title="Open">Open</a>
                                                 </td>
                                             </tr>
                                             <?php } ?>
