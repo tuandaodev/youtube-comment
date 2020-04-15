@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 14, 2020 at 03:40 PM
+-- Generation Time: Apr 15, 2020 at 04:19 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.2.25
 
@@ -67,33 +67,42 @@ CREATE TABLE IF NOT EXISTS `groups` (
   `comment_list` text DEFAULT NULL,
   `channel` varchar(256) DEFAULT NULL,
   `url` varchar(512) DEFAULT NULL,
+  `custom_html` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_campaign` (`campaign_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `groups`
 --
 
-INSERT INTO `groups` (`id`, `group_name`, `campaign_id`, `type`, `keyword_list`, `comment_list`, `channel`, `url`) VALUES
-(24, 'spec video 12', 6, 3, '', 'spec video 12', '', 'spec+video+12'),
-(25, 'spec comment', 6, 4, '', 'spec comment', '', 'spec+comment'),
-(27, 'spec comment link 2', 6, 4, '', 'spec comment link 2', '', 'spec+comment+link+2'),
-(28, 'custom task', 6, 5, 'custom task', 'custom task', 'custom task', ''),
-(20, 'test update', 6, 5, 'dota2', 'test 1\r\ntest 2\r\ntest 3\r\ntest 4\r\ntest 5', 'dota2vn.com', ''),
-(21, 'test custom', 0, 5, 'dota2', 'test 1\r\ntest 2\r\ntest 3\r\ntest 4\r\ntest 5', 'dota2vn.com', ''),
-(22, 'test generate video update', 6, 1, 'test generate video 1\r\ntest generate video 2', 'comment 1\r\ncomment 2', '', ''),
-(23, 'genrate comment link 2', 6, 2, 'genrate comment link 2', 'genrate comment link 2', '', ''),
-(10, 'dsdsd', 8, 1, 'dasdasdasd', 'asd asdasd asd ', '', ''),
-(50, 'spec video 12', 14, 3, '', 'spec video 12', '', 'spec+video+12'),
-(51, 'spec comment', 14, 4, '', 'spec comment', '', 'spec+comment'),
-(52, 'spec comment link 2', 14, 4, '', 'spec comment link 2', '', 'spec+comment+link+2'),
-(53, 'custom task', 14, 5, 'custom task', 'custom task', 'custom task', ''),
-(54, 'test update', 14, 5, 'dota2', 'test 1\r\ntest 2\r\ntest 3\r\ntest 4\r\ntest 5', 'dota2vn.com', ''),
-(55, 'test generate video update', 14, 1, 'test generate video 1\r\ntest generate video 2', 'comment 1\r\ncomment 2', '', ''),
-(56, 'genrate comment link 2', 14, 2, 'genrate comment link 2', 'genrate comment link 2', '', ''),
-(57, 'sdsdsd', 15, 1, 'test video\r\nbbc news\r\nenglish', 'test cm 1\r\ntest cm 2\r\ntest cm 3\r\ntest cm 4', '', ''),
-(58, 'test comment', 5, 2, 'dota 2 vn\r\nmiracle\r\nkuroky', 'comment 1\r\ncomment 2\r\ncomment 3\r\ncomment 4\r\ncomment 5\r\ncomment 6\r\ncomment 7', '', '');
+INSERT INTO `groups` (`id`, `group_name`, `campaign_id`, `type`, `keyword_list`, `comment_list`, `channel`, `url`, `custom_html`) VALUES
+(24, 'spec video 12', 6, 3, '', 'spec video 12', '', 'spec+video+12', NULL),
+(25, 'spec comment', 6, 4, '', 'spec comment', '', 'spec+comment', NULL),
+(27, 'spec comment link 2', 6, 4, '', 'spec comment link 2', '', 'spec+comment+link+2', NULL),
+(28, 'custom task', 6, 5, 'custom task', 'custom task', 'custom task', '', NULL),
+(20, 'test update', 6, 5, 'dota2', 'test 1\r\ntest 2\r\ntest 3\r\ntest 4\r\ntest 5', 'dota2vn.com', '', NULL),
+(21, 'test custom', 0, 5, 'dota2', 'test 1\r\ntest 2\r\ntest 3\r\ntest 4\r\ntest 5', 'dota2vn.com', '', NULL),
+(22, 'test generate video update', 6, 1, 'test generate video 1\r\ntest generate video 2', 'comment 1\r\ncomment 2', '', '', NULL),
+(23, 'genrate comment link 2', 6, 2, 'genrate comment link 2', 'genrate comment link 2', '', '', NULL),
+(10, 'dsdsd', 8, 1, 'dasdasdasd', 'asd asdasd asd ', '', '', NULL),
+(50, 'spec video 12', 14, 3, '', 'spec video 12', '', 'spec+video+12', NULL),
+(51, 'spec comment', 14, 4, '', 'spec comment', '', 'spec+comment', NULL),
+(52, 'spec comment link 2', 14, 4, '', 'spec comment link 2', '', 'spec+comment+link+2', NULL),
+(53, 'custom task', 14, 5, 'custom task', 'custom task', 'custom task', '', NULL),
+(54, 'test update', 14, 5, 'dota2', 'test 1\r\ntest 2\r\ntest 3\r\ntest 4\r\ntest 5', 'dota2vn.com', '', NULL),
+(55, 'test generate video update', 14, 1, 'test generate video 1\r\ntest generate video 2', 'comment 1\r\ncomment 2', '', '', NULL),
+(56, 'genrate comment link 2', 14, 2, 'genrate comment link 2', 'genrate comment link 2', '', '', NULL),
+(58, 'test comment', 5, 2, 'dota 2 vn\r\nmiracle\r\nkuroky', 'comment 1\r\ncomment 2\r\ncomment 3\r\ncomment 4\r\ncomment 5\r\ncomment 6\r\ncomment 7', '', '', NULL),
+(65, 'custom 1', 7, 5, '', 'custom comment 1\r\ncustom comment 2\r\ncustom comment 3\r\ncustom comment 4', NULL, '', 'custom html 1'),
+(60, 'sdsdsd', 15, 3, '', 'asdasdds\r\nasdsadsdsdasd\r\nasdasdasd', '', 'https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DFKB_jQWiw88', NULL),
+(61, 'sdsd', 15, 3, '', '123123\r\n454523\r\n896785 6\r\n90-6745', '', 'https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DgPK1aBwSHHI', NULL),
+(62, '1sdasd', 15, 5, '', 'sdasdsad', NULL, '', 'ádasd'),
+(63, '12312', 15, 6, '', '123123123123', NULL, '', '123123123'),
+(64, 'update tét 3', 15, 7, '', 'update tét 3', '', '', 'đâsdas'),
+(66, 'custom 1 1', 7, 5, '', 'custom 1 1', NULL, '', 'custom 1 1'),
+(67, 'sdd', 7, 3, '', '123\r\n2353123\r\n12312', '', 'https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DFKB_jQWiw88', ''),
+(68, 'asdsa', 7, 3, '', 'asdasd\r\nasdasdfsdas\r\nasdasdsxc\r\nasdsad', NULL, 'https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DgPK1aBwSHHI', '');
 
 -- --------------------------------------------------------
 
@@ -110,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `options` (
   `value` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_campaign` (`campaign_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `options`
@@ -164,7 +173,21 @@ INSERT INTO `options` (`id`, `campaign_id`, `type`, `key`, `value`) VALUES
 (57, 15, 1, 'items_number', '5'),
 (58, 15, 1, 'header_html', 'ewewewe'),
 (59, 5, 2, 'items_number', '5'),
-(60, 5, 2, 'header_html', '');
+(60, 5, 2, 'header_html', ''),
+(61, 7, 3, 'items_number', '5'),
+(62, 7, 3, 'header_html', '<label>Spec video</label>'),
+(63, 7, 4, 'items_number', '5'),
+(64, 7, 4, 'header_html', ''),
+(65, 15, 5, 'items_number', '5'),
+(66, 15, 5, 'header_html', ''),
+(67, 15, 3, 'items_number', '5'),
+(68, 15, 3, 'header_html', ''),
+(69, 7, 5, 'items_number', '5'),
+(70, 7, 5, 'header_html', '<label>Custom Header 1</label>'),
+(71, 7, 6, 'items_number', '5'),
+(72, 7, 6, 'header_html', '<label>Custom Header 2</label>'),
+(73, 7, 7, 'items_number', '0'),
+(74, 7, 7, 'header_html', '<label>Custom Header 3</label>');
 
 -- --------------------------------------------------------
 
