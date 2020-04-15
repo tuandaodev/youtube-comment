@@ -112,7 +112,7 @@ $verifyTimes = $campaign['verify_number'] ?? 0;
         var check = true;
         $(".select_text").each(function () {
             if ($(this).attr('check-condition') != 1) {
-                alert("Please comment on all videos to verify.");
+                alert("Please complete all the tasks to verify.");
                 check = false;
                 return false;
             }
