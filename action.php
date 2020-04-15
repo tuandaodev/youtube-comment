@@ -168,16 +168,6 @@ if (isset($_POST['action'])) {
                 $return['status'] = "1";
             }
             break;
-        case 'export_campaign':
-            $id = $_POST['id'];
-            $data['campaign'] = $dbModel->get_campaign_by_id($id);
-            $data['groups'] = $dbModel->get_all_group($id);
-            $data['settings'] = $dbModel->get_campaign_options_all($id);
-            export_data($data);
-            if ($data) {
-                $return['status'] = "1";
-            }
-            break;
         case 'update_comment':
             $comment_id = $_POST['id'];
             $content = $_POST['content'];

@@ -95,7 +95,7 @@
                                                     <a href="campaign-content.php?campaign_id=<?php echo $item['id'] ?>" class="btn btn-success" title="Manage Content">Manage</a>
                                                     <button type="button" class="btn btn-danger" title="Delete this item" onclick="deleteItem('<?php echo $item['id'] ?>')">Delete</button>
                                                     <button type="button" class="btn btn-primary" title="Clone this item" onclick="cloneItem('<?php echo $item['id'] ?>')">Clone</button>
-                                                    <button type="button" class="btn btn-success" title="Export this item" onclick="exportItem('<?php echo $item['id'] ?>')">Export</button>
+                                                    <a href="export_zip.php?campaign_id=<?php echo $item['id'] ?>" class="btn btn-success" title="Export this item">Export</a>
                                                     <a href="verify.php?cid=<?php echo $item['id'] ?>" target="_blank" class="btn btn-warning" title="Verify Video">Verify Video</a>
                                                 </td>
                                             </tr>
@@ -193,36 +193,6 @@
                 console.log(response);
                 if (response.status == 1) {
                     alert('Clone success');
-                    window.location.reload();
-                }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.log(textStatus, errorThrown);
-            }
-        });
-    };
-
-    function exportItem(id) {
-
-        var r = confirm("Do you want to export data of this campaign?");
-        if (r == true) {
-        } else {
-            return;
-        }
-
-        var data = {};
-        data.id = id;
-        data.action = 'export_campaign';
-
-        $.ajax({
-            url: "action.php",
-            type: "post",
-            data: data,
-            dataType: 'json',
-            success: function (response) {
-                console.log(response);
-                if (response.status == 1) {
-                    alert('Export success. Copy export.php and export.json to other hosting.');
                     window.location.reload();
                 }
             },

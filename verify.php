@@ -7,7 +7,7 @@ require_once 'DbModel.php';
 $dbModel = new DbModel();
 
 // Load Data
-$campaign_id = $_REQUEST['cid'];
+$campaign_id = @$_REQUEST['cid'];
 $campaign = $dbModel->get_campaign_by_id($campaign_id);
 if (!$campaign) {
     echo "Campaign Not Found";
@@ -21,22 +21,23 @@ if (!$group) {
 
 // Load Mapping Settings
 $temps = $dbModel->get_campaign_options_by_type($campaign_id, $group['type']);
-
-// SAME HERE
 $settings = [];
 foreach ($temps as $item) {
     $settings[$item['key']] = $item['value'];
 }
-$result = processData($campaign, $group, $settings);
 
+// Load Groups
+$groups = [];
+if ($group['type'] != 1 && $group['type'] != 2) {
+    $maxItems = $settings['items_number'] ?? 1;
+    $groups = $dbModel->get_groups_random_max($campaign['id'], $group['type'], $maxItems);
+}
+
+// SAME HERE
+$result = processData($campaign, $group, $groups, $settings);
 $url_list = $result['url_list'] ?? [];
 $comment_list = $result['comment_list'] ?? [];
-
-if (count($url_list) <> count($comment_list)) {
-    $maxItems = min(count($url_list), count($comment_list));
-    $comment_list = array_slice($comment_list, 0, $maxItems);
-    $url_list = array_slice($url_list, 0, $maxItems);
-}
+$groups_list = $result['groups_list'] ?? [];
 
 $verifyTimes = $campaign['verify_number'] ?? 0;
 
@@ -67,14 +68,15 @@ $verifyTimes = $campaign['verify_number'] ?? 0;
     <?php endif; ?>
 
     <?php
-        if ($group['type'] == 5) renderTableCustom($group, $url_list, $comment_list);
+        if ($group['type'] == 5 || $group['type'] == 6 || $group['type'] == 7) renderTableCustom($groups_list);
+        else if ($group['type'] == 3 || $group['type'] == 4) renderTable34($groups_list);
         else renderTable($group, $url_list, $comment_list);
     ?>
 
     <button id="btn-verify" class="btn btn-primary btn-verify" onclick="verify()"><?php echo $campaign['btn_text'] ?? 'Verify' ?></button>
 </div>
 
-<?php if ($campaign['custom_css']): ?>
+<?php if (isset($campaign['custom_css']) && !empty($campaign['custom_css'])): ?>
 <style>
 <?php echo $campaign['custom_css'] ?? '' ?>
 </style>
@@ -130,7 +132,7 @@ $verifyTimes = $campaign['verify_number'] ?? 0;
                         window.location.href = "<?php echo urldecode($campaign['landing_page']) ?>";
                     } else {
                         put('verify_count', verify_count);
-                        alert("Verification failed. The comments must be exactly the same.");
+                        alert("Verification failed! Your comments coundn't be found.");
                         window.location.reload();
                     }
                 }, 2000);
@@ -159,10 +161,7 @@ function renderTable($group, $url_list, $comment_list) {
         <?php
         $count = 0;
         foreach ($url_list as $url):
-            $comment_text = '';
-            if (isset($comment_list[$count])) {
-                $comment_text = $spintax->process($comment_list[$count]);
-            }
+            $comment_text = $spintax->process($comment_list[array_rand($comment_list, 1)]);
             $count++;
             ?>
             <tr>
@@ -186,14 +185,13 @@ function renderTable($group, $url_list, $comment_list) {
 <?php
 }
 
-function renderTableCustom($group, $url_list, $comment_list) {
+function renderTable34($groups_list) {
     $spintax = new Spintax();
     ?>
     <table class="videos">
         <thead>
         <tr>
-            <th>Keyword</th>
-            <th>Channel/Website</th>
+            <th>Open video</th>
             <th>Comment</th>
         </tr>
         </thead>
@@ -201,16 +199,17 @@ function renderTableCustom($group, $url_list, $comment_list) {
 
         <?php
         $count = 0;
-        foreach ($url_list as $url):
-            $comment_text = '';
-            if (isset($comment_list[$count])) {
-                $comment_text = $spintax->process($comment_list[$count]);
-            }
+        foreach ($groups_list as $item):
+            $comment_list = $item['comment_list'] ?? [];
+            $comment_text = $spintax->process($comment_list[array_rand($comment_list, 1)]);
             $count++;
             ?>
             <tr>
-                <td><?php echo $group['keyword_list'] ?? '' ?></td>
-                <td><?php echo $group['channel'] ?? '' ?></td>
+                <td>
+                    <a class="external_link" data-id="<?php echo $count ?>"
+                       href="<?php echo $item['url'] ?>" target="_blank">
+                        <img width="100" src="<?php echo $item['image'] ?? '' ?>" alt="Click here"></a>
+                </td>
                 <td id="text<?php echo $count ?>" class="notranslate select_text">
                     <?php echo $comment_text ?>
                     &nbsp;<button id="btnCopy<?php echo $count ?>" class="btn btn-outline-info btn-sm btn-copy" data-id="<?php echo $count ?>" data-clipboard-text="<?php echo $comment_text ?>">
@@ -226,13 +225,49 @@ function renderTableCustom($group, $url_list, $comment_list) {
     <?php
 }
 
-function processData($campaign, $group, $settings) {
+function renderTableCustom($groups_list) {
+    $spintax = new Spintax();
+    ?>
+    <table class="videos">
+        <thead>
+        <tr>
+            <th>Content</th>
+            <th>Comment</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <?php
+        $count = 0;
+        foreach ($groups_list as $item):
+            $comment_list = $item['comment_list'] ?? [];
+            $comment_text = $spintax->process($comment_list[array_rand($comment_list, 1)]);
+            $count++;
+            ?>
+            <tr>
+                <td><?php echo $item['custom_html'] ?? '' ?></td>
+                <td id="text<?php echo $count ?>" class="notranslate select_text">
+                    <?php echo $comment_text ?>
+                    &nbsp;<button id="btnCopy<?php echo $count ?>" class="btn btn-outline-info btn-sm btn-copy" data-id="<?php echo $count ?>" data-clipboard-text="<?php echo $comment_text ?>">
+                        <i class="fa fa-copy"></i> Copy
+                    </button>
+                </td>
+            </tr>
+        <?php
+        endforeach;
+        ?>
+        </tbody>
+    </table>
+    <?php
+}
+
+function processData($campaign, $group, $groups, $settings) {
     $result = [];
     if ($group['type'] == 1) $result = processDataType1($campaign, $group, $settings);
     if ($group['type'] == 2) $result = processDataType2($campaign, $group, $settings);
-    if ($group['type'] == 3) $result = processDataType34($campaign, $group, $settings);
-    if ($group['type'] == 4) $result = processDataType34($campaign, $group, $settings);
-    if ($group['type'] == 5) $result = processDataTypeCustom($campaign, $group, $settings);
+    if ($group['type'] == 3) $result = processDataType34($campaign, $groups, $settings);
+    if ($group['type'] == 4) $result = processDataType34($campaign, $groups, $settings);
+    if ($group['type'] == 5 || $group['type'] == 6 || $group['type'] == 7) $result = processDataTypeCustom($campaign, $groups, $settings);
     return $result;
 }
 
@@ -250,8 +285,6 @@ function processDataType1($campaign, $group, $settings) {
     $maxItems = $settings['items_number'] ?? 0;
     shuffle($video_list);
     $url_list = array_slice($video_list, 0, $maxItems);
-    shuffle($comment_list);
-    $comment_list = array_slice($comment_list, 0, $maxItems);
 
     $result['comment_list'] = $comment_list;
     $result['url_list'] = $url_list;
@@ -292,71 +325,42 @@ function processDataType2($campaign, $group, $settings) {
     return $result;
 }
 
-function processDataType34($campaign, $group, $settings) {
-    // Process Data
-
-    // Get Video Thumb From URL
-    $video_url = urldecode($group['url']);
-    $parts = parse_url($video_url);
-    if ($parts['query'] ?? false) {
-        parse_str($parts['query'], $query);
-        $video_id = $query['v'] ?? '';
-        $video_image = get_video_image($video_id);
-    }
-
-    $comment_list = explode("\n", str_replace("\r", "", $group['comment_list'] ?? []));
-    $comment_list = array_map('trim', $comment_list);
-
-    $maxItems = $settings['items_number'] ?? 1;
-
-    $url_list = [];
-    $count = 0;
-    while ($count < $maxItems) {
+function processDataType34($campaign, $groups, $settings) {
+    $groups_list = [];
+    foreach ($groups as $group) {
+        // Get Video Thumb From URL
+        $video_url = urldecode($group['url']);
+        $parts = parse_url($video_url);
+        if (isset($parts['query']) && !empty($parts['query'])) {
+            parse_str($parts['query'], $query);
+            $video_id = $query['v'] ?? '';
+            $video_image = get_video_image($video_id);
+        }
         $_temp['url'] = $video_url;
         $_temp['image'] = $video_image ?? 'https://via.placeholder.com/200x150?text=No%20Image';
-        $url_list[] = $_temp;
-        $count++;
+
+        $comment_list = explode("\n", str_replace("\r", "", $group['comment_list'] ?? []));
+        $comment_list = array_map('trim', $comment_list);
+        $_temp['comment_list'] = $comment_list;
+
+        $groups_list[] = $_temp;
     }
-
-    shuffle($comment_list);
-    $comment_list = array_slice($comment_list, 0, $maxItems);
-
-    $result['comment_list'] = $comment_list;
-    $result['url_list'] = $url_list;
+    $result['groups_list'] = $groups_list;
     return $result;
 }
 
-function processDataTypeCustom($campaign, $group, $settings) {
-    // Process Data
+function processDataTypeCustom($campaign, $groups, $settings) {
+    $groups_list = [];
+    foreach ($groups as $group) {
+        $_temp['custom_html'] = $group['custom_html'] ?? '';
 
-    // Get Video Thumb From URL
-    $video_url = urldecode($group['url']);
-    $parts = parse_url($video_url);
-    if ($parts['query'] ?? false) {
-        parse_str($parts['query'], $query);
-        $video_id = $query['v'] ?? '';
-        $video_image = get_video_image($video_id);
+        $comment_list = explode("\n", str_replace("\r", "", $group['comment_list'] ?? []));
+        $comment_list = array_map('trim', $comment_list);
+        $_temp['comment_list'] = $comment_list;
+
+        $groups_list[] = $_temp;
     }
-
-    $comment_list = explode("\n", str_replace("\r", "", $group['comment_list'] ?? []));
-    $comment_list = array_map('trim', $comment_list);
-
-    $maxItems = $settings['items_number'] ?? 1;
-
-    $url_list = [];
-    $count = 0;
-    while ($count < $maxItems) {
-        $_temp['url'] = $video_url;
-        $_temp['image'] = $video_image ?? 'https://via.placeholder.com/200x150?text=No%20Image';
-        $url_list[] = $_temp;
-        $count++;
-    }
-
-    shuffle($comment_list);
-    $comment_list = array_slice($comment_list, 0, $maxItems);
-
-    $result['comment_list'] = $comment_list;
-    $result['url_list'] = $url_list;
+    $result['groups_list'] = $groups_list;
     return $result;
 }
 
@@ -429,36 +433,10 @@ function youtube_get_comments($keyword, $maxVideos, $maxResults = 50)
 function get_video_image($video_id)
 {
     if (!$video_id) return '';
-    $response = load_cache_video($video_id);
-    if (!$response) {
-        $url = 'https://www.googleapis.com/youtube/v3/videos';
-        $data = [
-            'part' => 'snippet',
-            'id' => $video_id,
-            'key' => DEVELOPER_KEY
-        ];
-        $response = api_call($url, $data);
-        if ($response) {
-            cache_video($video_id, $response);
-        }
-    }
-    $response = json_decode($response, true) ?? [];
-
-    $videoArr = [];
-    if (isset($response['items']) && !empty($response['items'])) {
-        $videoArr = $response['items'][0];
-    }
-    $thumb = '';
-    if (isset($videoArr['snippet']['thumbnails']['medium']['url']) && !empty($videoArr['snippet']['thumbnails']['medium']['url'])) {
-        $thumb = $videoArr['snippet']['thumbnails']['medium']['url'];
-    }
-    return $thumb;
+    return "https://i.ytimg.com/vi/$video_id/mqdefault.jpg";
 }
 
 function youtube_get_comment($keyword, $video_id) {
-
-//    $result = load_cache_comment($keyword, $video_id);
-//    if ($result) return $result;
 
     $url = 'https://www.googleapis.com/youtube/v3/commentThreads';
     $data = [
@@ -474,14 +452,9 @@ function youtube_get_comment($keyword, $video_id) {
     $result = [];
     if (isset($data_single['items'])) {
         foreach ($data_single['items'] as $comment) {
-//            $date = strtotime($comment['snippet']['topLevelComment']['snippet']['publishedAt']);
-//            echo date("Y-m-d H:i:s", $date);
             $result[] = $comment['id'];
         }
     }
-//    if ($result) {
-//        cache_comment($keyword, $video_id, $result);
-//    }
     return $result;
 }
 
@@ -530,34 +503,6 @@ function cache_keyword($keyword, $response) {
     }
 }
 
-function load_cache_video($video_id) {
-    $file_name = md5($video_id);
-    $file_path = __DIR__ . '/data/videos/' . $file_name;
-    $result = @file_get_contents($file_path);
-    if ($result) {
-        if (filectime($file_path) + 3600 < time()) {
-            @unlink($file_path);
-        }
-    }
-    return $result;
-}
-
-function cache_video($video_id, $response) {
-    try {
-        $file_name = md5($video_id);
-        $folder_path = __DIR__ . '/data/videos';
-        $file_path = $folder_path . '/' . $file_name;
-        if (!file_exists($folder_path)) {
-            mkdir($folder_path, 0755, true);
-        }
-        $file = fopen($file_path, "w");
-        $body = $response;
-        fwrite($file, $body);
-        fclose($file);
-    } catch (Exception $ex) {
-    }
-}
-
 class Spintax
 {
     public function process($text)
@@ -576,41 +521,3 @@ class Spintax
         return $parts[array_rand($parts)];
     }
 }
-
-/*
-function load_cache_comment($keyword, $video_id) {
-    $file_name = md5($keyword);
-    $file_path = __DIR__ . '/data/comments/' . $file_name;
-    $result = @file_get_contents($file_path);
-    if ($result) {
-        if (filectime($file_path) + 3600 < time()) {
-            @unlink($file_path);
-        }
-        $result = json_decode($result, true);
-        if (isset($result[$video_id])) return $result[$video_id];
-    }
-    return [];
-}
-
-function cache_comment($keyword, $video_id, $response) {
-    try {
-        $file_name = md5($keyword);
-        $folder_path = __DIR__ . '/data/comments';
-        $file_path = $folder_path . '/' . $file_name;
-        if (!file_exists($folder_path)) {
-            mkdir($folder_path, 0755, true);
-        }
-        $file = fopen($file_path, "r+");
-        if ($file) {
-            $data = '';
-            while (!feof($file)) { $data .= fread($file, 1024); }
-            $data = json_decode($data, true);
-            if (!$data) $data = [];
-            $data[$video_id] = $response;
-            fwrite($file, json_encode($data));
-            fclose($file);
-        }
-    } catch (Exception $ex) {
-    }
-}
-*/

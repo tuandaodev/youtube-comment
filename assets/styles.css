@@ -23,22 +23,6 @@ body::-webkit-scrollbar-thumb{
 .clr{
     clear:both
 }
-/*.btn{*/
-/*    background:#2265c9;*/
-/*    border-radius:5px;*/
-/*    padding:11px 20px;*/
-/*    color:#fff;*/
-/*    display:inline-block;*/
-/*    font:normal bold 16px/1 "Open Sans",sans-serif;*/
-/*    text-align:center;*/
-/*    box-shadow:none;*/
-/*    outline:none;*/
-/*    border:none;*/
-/*    cursor:pointer*/
-/*}*/
-/*.btn:hover{*/
-/*    background:#1e59ac*/
-/*}*/
 .wrapper{
     margin:auto;
     max-width:100%;

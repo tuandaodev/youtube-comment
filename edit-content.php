@@ -39,9 +39,15 @@ $type = $group['type'] ?? 0;
                                     <li role="presentation" <?php disableTabClass($type, 4) ?> ><a <?php disableTabClass($type, 4) ?> href="#specific-comment-link"
                                                                                                                                       aria-controls="specific-comment-link" role="tab"
                                                                                                                                       data-toggle="tab">Specific Comment Link</a></li>
-                                    <li role="presentation" <?php disableTabClass($type, 5) ?> ><a <?php disableTabClass($type, 5) ?> href="#custom-tasks"
-                                                                                                                                      aria-controls="custom-tasks" role="tab"
-                                                                                                                                      data-toggle="tab">Custom Tasks</a></li>
+                                    <li role="presentation" <?php disableTabClass($type, 5) ?> ><a <?php disableTabClass($type, 5) ?> href="#custom-tasks-1"
+                                                                                                                                      aria-controls="custom-tasks-1" role="tab"
+                                                                                                                                      data-toggle="tab">Custom Tasks 1</a></li>
+                                    <li role="presentation" <?php disableTabClass($type, 6) ?> ><a <?php disableTabClass($type, 6) ?> href="#custom-tasks-2"
+                                                                                                                                      aria-controls="custom-tasks-2" role="tab"
+                                                                                                                                      data-toggle="tab">Custom Tasks 2</a></li>
+                                    <li role="presentation" <?php disableTabClass($type, 7) ?> ><a <?php disableTabClass($type, 7) ?> href="#custom-tasks-3"
+                                                                                                                                      aria-controls="custom-tasks-3" role="tab"
+                                                                                                                                      data-toggle="tab">Custom Tasks 3</a></li>
                                 </ul>
                                 <!-- Tab panes -->
                                 <div class="tab-content">
@@ -184,7 +190,8 @@ $type = $group['type'] ?? 0;
                                             </form>
                                         </div>
                                     </div>
-                                    <div role="tabpanel" class="tab-pane <?php activeTab($type, 5) ?>" id="custom-tasks">
+
+                                    <div role="tabpanel" class="tab-pane <?php activeTab($type, 5) ?>" id="custom-tasks-1">
                                         <div class="panel-body">
                                             <form method="POST" class="update_form">
                                                 <div class="col-md-12">
@@ -194,17 +201,11 @@ $type = $group['type'] ?? 0;
                                                                placeholder="Nhập tên group">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label>Keyword</label>
-                                                        <input class="form-control" name="keyword_list" value="<?php echo $group['keyword_list'] ?? '' ?>" required placeholder="Nhập keyword"/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Channel/Website Name</label>
-                                                        <input class="form-control" name="channel" value="<?php echo $group['channel'] ?? '' ?>"
-                                                               required placeholder="Nhập tên Channel/Website"/>
+                                                        <label>Custom HTML Column</label>
+                                                        <textarea rows="10" class="form-control" name="custom_html" required
+                                                                  placeholder="Nhập HTML"><?php echo $group['custom_html'] ?? '' ?></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
@@ -225,6 +226,79 @@ $type = $group['type'] ?? 0;
                                             </form>
                                         </div>
                                     </div>
+
+                                    <div role="tabpanel" class="tab-pane <?php activeTab($type, 6) ?>" id="custom-tasks-2">
+                                        <div class="panel-body">
+                                            <form method="POST" class="update_form">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Custom Task Group Name</label>
+                                                        <input class="form-control" name="group_name" required value="<?php echo $group['group_name'] ?? '' ?>"
+                                                               placeholder="Nhập tên group">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Custom HTML Column</label>
+                                                        <textarea rows="10" class="form-control" name="custom_html" required
+                                                                  placeholder="Nhập HTML"><?php echo $group['custom_html'] ?? '' ?></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Comment List</label>
+                                                        <textarea rows="10" class="form-control" name="comment_list" required
+                                                                  placeholder="Nhập danh sách comment"><?php echo $group['comment_list'] ?? '' ?></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <input type="hidden" name="id" value="<?php echo $group['id'] ?? 0 ?>"/>
+                                                    <input type="hidden" name="action" value="update_campaign_content"/>
+                                                    <input type="hidden" name="type" value="6"/>
+                                                    <button type="submit" class="btn btn-success" value="submit">Update
+                                                    </button>
+                                                    <button type="reset" class="btn btn-default">Reset</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane <?php activeTab($type, 7) ?>" id="custom-tasks-3">
+                                        <div class="panel-body">
+                                            <form method="POST" class="update_form">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Custom Task Group Name</label>
+                                                        <input class="form-control" name="group_name" required value="<?php echo $group['group_name'] ?? '' ?>"
+                                                               placeholder="Nhập tên group">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Custom HTML Column</label>
+                                                        <textarea rows="10" class="form-control" name="custom_html" required
+                                                                  placeholder="Nhập HTML"><?php echo $group['custom_html'] ?? '' ?></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Comment List</label>
+                                                        <textarea rows="10" class="form-control" name="comment_list" required
+                                                                  placeholder="Nhập danh sách comment"><?php echo $group['comment_list'] ?? '' ?></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <input type="hidden" name="id" value="<?php echo $group['id'] ?? 0 ?>"/>
+                                                    <input type="hidden" name="action" value="update_campaign_content"/>
+                                                    <input type="hidden" name="type" value="7"/>
+                                                    <button type="submit" class="btn btn-success" value="submit">Update
+                                                    </button>
+                                                    <button type="reset" class="btn btn-default">Reset</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

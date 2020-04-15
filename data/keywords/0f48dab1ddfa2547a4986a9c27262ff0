@@ -1,0 +1,1656 @@
+{
+ "kind": "youtube#searchListResponse",
+ "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/n7ZtWv7mj4jueMdJQvL5DYWaY7U\"",
+ "nextPageToken": "CDIQAA",
+ "regionCode": "VN",
+ "pageInfo": {
+  "totalResults": 1000000,
+  "resultsPerPage": 50
+ },
+ "items": [
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/beWRY1gkm_pGr0YyW1X85WkPjp0\"",
+   "id": {
+    "kind": "youtube#channel",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA"
+   },
+   "snippet": {
+    "publishedAt": "2006-04-08T05:51:05.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "BBC News",
+    "description": "Welcome to the official BBC News YouTube channel. Interested in global news with an impartial perspective? Want to see behind-the-scenes clips and footage ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://yt3.ggpht.com/-Em-drWQ3uYI/AAAAAAAAAAI/AAAAAAAAAAA/b-RZ1gDQAIc/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+     },
+     "medium": {
+      "url": "https://yt3.ggpht.com/-Em-drWQ3uYI/AAAAAAAAAAI/AAAAAAAAAAA/b-RZ1gDQAIc/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+     },
+     "high": {
+      "url": "https://yt3.ggpht.com/-Em-drWQ3uYI/AAAAAAAAAAI/AAAAAAAAAAA/b-RZ1gDQAIc/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "upcoming"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/YdyK_wJrlEJLy3uCuvfVT8OfbxI\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "-NWKv2gLx_w"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-14T21:43:55.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus warning:  economy could shrink by 35% with unemployment rising to 2 million - BBC News",
+    "description": "There's a new warning that the coronavirus pandemic could have a devastating impact on the UK's economy. The Office for Budgetary Responsibility, the ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/-NWKv2gLx_w/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/-NWKv2gLx_w/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/-NWKv2gLx_w/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/QjamBA26qTW-45caBjjoYekSieQ\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "_4cXJKUunKk"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-14T21:31:16.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus: new figures reveal sharp rise in weekly deaths - BBC News",
+    "description": "The latest official statistics on the effects of the coronavirus pandemic in the UK show a sharp rise in weekly deaths. There were around 6000 more deaths than ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/_4cXJKUunKk/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/_4cXJKUunKk/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/_4cXJKUunKk/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/9ZBfAesUuYYkqCE4CewYjOSq3Jg\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "-63ztcUdUqk"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-14T17:52:18.000Z",
+    "channelId": "UCCj956IF62FbT7Gouszaj9w",
+    "title": "Coronavirus: More tough times to come, chancellor tells UK 🔴 @BBC News - BBC",
+    "description": "Subscribe and to OFFICIAL BBC YouTube https://bit.ly/2IXqEIn Stream original BBC programmes FIRST on BBC iPlayer https://bbc.in/2J18jYJ ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/-63ztcUdUqk/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/-63ztcUdUqk/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/-63ztcUdUqk/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/dNbqv1unlaybzZSEXulLxNG_K9A\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "s-Cf9pX9nlE"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-14T12:54:57.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus: New York state&#39;s death toll passed 10,000  - BBC News",
+    "description": "Governor Andrew Cuomo told a briefing on Monday he believed the \"worst is over\" for his state. \"Nobody has been here before, nobody has all the answers,\" ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/s-Cf9pX9nlE/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/s-Cf9pX9nlE/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/s-Cf9pX9nlE/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/j8B1HSAVdIVX5Jcb95cL_wVx5nM\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "JIhNKZOHJ74"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-14T14:54:57.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Is India underreporting the coronavirus outbreak? - BBC News",
+    "description": "The Prime Minister of India, Narendra Modi, has extended a lockdown on the country until May 3. The number of coronavirus cases in India has reached over ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/JIhNKZOHJ74/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/JIhNKZOHJ74/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/JIhNKZOHJ74/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/4movoGQhcZdDMBVI1OY1noHYIcw\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "F5L-7p3v4GI"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-13T21:43:34.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus: outbreak &quot;not yet at peak&quot; and lockdown may last another month - BBC News",
+    "description": "The government has said the UK is still not past the peak of the coronavirus outbreak and the number of deaths will rise in the coming days. It says the lockdown ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/F5L-7p3v4GI/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/F5L-7p3v4GI/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/F5L-7p3v4GI/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/F-uXl93QN-8IYpDm9yxSPMk74co\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "lYmxWub99vg"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-13T18:37:37.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus: Don&#39;t expect changes to UK lockdown this week - Raab - BBC News",
+    "description": "The government does not expect to make changes to coronavirus lockdown restrictions this week, Dominic Raab has said. The foreign secretary said the UK's ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/lYmxWub99vg/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/lYmxWub99vg/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/lYmxWub99vg/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/QArfXkyZUp1IODlyC066S0wFqX4\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "K6oH1cjW1VM"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-12T14:40:27.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus: Boris Johnson says &#39;it could have gone either way&#39; - BBC News",
+    "description": "Prime Minister Boris Johnson has said it \"could have gone either way\" as he thanked healthcare workers for saving his life after being discharged from hospital.",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/K6oH1cjW1VM/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/K6oH1cjW1VM/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/K6oH1cjW1VM/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/HsSGZifFrxZjSwstcEkTtKGg_2o\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "MRS5DAe6U3I"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-14T17:29:03.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Sunak: UK &#39;not choosing&#39; between health and wealth - BBC News",
+    "description": "Chancellor Rishi Sunak begins with a few words on today's economic outlook from the UK Office for Budget Responsibility. He says \"these are tough times\" and ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/MRS5DAe6U3I/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/MRS5DAe6U3I/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/MRS5DAe6U3I/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/sCQjkU8ZR6O34q908tbD_hZ2tmg\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "4XgHmQ7d_M8"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-13T16:45:31.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus: Ecuador struggles to bury its victims - BBC News",
+    "description": "Warning: Contains some upsetting scenes. A week after images of bodies on the streets of Ecuador hit the headlines, many families are still waiting to bury their ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/4XgHmQ7d_M8/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/4XgHmQ7d_M8/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/4XgHmQ7d_M8/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/-OKIEmF_4Ejq54UstBGDyfH-IfA\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "dvcMCGp64Wc"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-12T15:43:14.000Z",
+    "channelId": "UCCj956IF62FbT7Gouszaj9w",
+    "title": "Coronavirus: UK death toll tops 10,000 | Government Press Conference 🔴 @BBC News - BBC",
+    "description": "Subscribe and to OFFICIAL BBC YouTube https://bit.ly/2IXqEIn Stream original BBC programmes FIRST on BBC iPlayer https://bbc.in/2J18jYJ ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/dvcMCGp64Wc/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/dvcMCGp64Wc/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/dvcMCGp64Wc/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/56kyvfQYwjrI9jrDrs6q6Z_zpG8\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "B2nxHViXDMU"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-14T16:26:29.000Z",
+    "channelId": "UCN7B-QD0Qgn2boVH5Q0pOWg",
+    "title": "Corona Virus: Donald Trump क्या इस जंग में पिछड़ गए हैं? (BBC Hindi)",
+    "description": "कोरोना वायरस के चलते अमरीका में लाखों लोग संक्रमित हैं और हज़ारों की मौत...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/B2nxHViXDMU/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/B2nxHViXDMU/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/B2nxHViXDMU/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News Hindi",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/ijizyvUkj_qe7uTP2_khmoyAQq4\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "tWORpOSnmBA"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-13T17:20:52.000Z",
+    "channelId": "UCCj956IF62FbT7Gouszaj9w",
+    "title": "Coronavirus: Don&#39;t expect changes to UK lockdown this week - Dominic Raab 🔴 @BBC News - BBC",
+    "description": "Subscribe and to OFFICIAL BBC YouTube https://bit.ly/2IXqEIn Stream original BBC programmes FIRST on BBC iPlayer https://bbc.in/2J18jYJ ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/tWORpOSnmBA/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/tWORpOSnmBA/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/tWORpOSnmBA/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/lqazh0l3Aci5btS7dK0JGTTHsqo\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "NNOvoiK5QBg"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-14T16:50:29.000Z",
+    "channelId": "UCd9maKo3B6jX8pCPzLa2hvA",
+    "title": "ဥရောပမှာ ပိတ်ဆို့မှုတချို့ ဖြေလျှော့  - BBC News မြန်မာ",
+    "description": "ဘီဘီစီ မြန်မာတီဗီ - ၁၄ ဧပြီ ၂၀၂၀ မြန်မာပြည်မှာ ကိုရိုနာဗိုင်းရပ်စ်ပိုး...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/NNOvoiK5QBg/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/NNOvoiK5QBg/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/NNOvoiK5QBg/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News မြန်မာ",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/Fgrv51sbto67zbq1scYuAIWuy2U\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "WqsL60rGrnc"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-14T14:26:41.000Z",
+    "channelId": "UCN7B-QD0Qgn2boVH5Q0pOWg",
+    "title": "Corona Virus पर BBC Hindi का ख़ास Digital Bulletin: कोरोना दिनभर (BBC Hindi)",
+    "description": "कोरोना वायरस पर बीबीसी हिंदी की खास पेशकश, डिजिटल रेडियो के रूप में. इसका...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/WqsL60rGrnc/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/WqsL60rGrnc/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/WqsL60rGrnc/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News Hindi",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/b77a_vySWKhMD8FUm2b-XPlgsiY\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "wkBbap_SIUw"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-12T14:28:33.000Z",
+    "channelId": "UCCj956IF62FbT7Gouszaj9w",
+    "title": "Coronavirus: Boris Johnson discharged from hospital, thanks NHS 🔴 @BBC News - BBC",
+    "description": "Subscribe and to OFFICIAL BBC YouTube https://bit.ly/2IXqEIn Stream original BBC programmes FIRST on BBC iPlayer https://bbc.in/2J18jYJ ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/wkBbap_SIUw/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/wkBbap_SIUw/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/wkBbap_SIUw/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/gJXDze9UbzUTmlg5tJAOiM-q1IY\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "AoNe_trkcXw"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-14T14:30:02.000Z",
+    "channelId": "UCN7B-QD0Qgn2boVH5Q0pOWg",
+    "title": "PM Narendra Modi के Lockdown बढ़ाने पर Delhi CM Arvind Kejriwal क्या बोले?",
+    "description": "दिल्ली के मुख्यमंत्री अरविंद केजरीवाल ने नरेंद्र मोदी के लॉकडाउन बढ़ाने...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/AoNe_trkcXw/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/AoNe_trkcXw/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/AoNe_trkcXw/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News Hindi",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/MZ6cV7WfAbxsMStBOnOlvV0IfHM\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "Eji5EXsQNn4"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-08T09:53:09.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus: US records highest death toll in single day - BBC News",
+    "description": "The US recorded the most coronavirus deaths in a single day with more than 1800 fatalities reported on Tuesday. It brings the total number of deaths in the ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/Eji5EXsQNn4/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/Eji5EXsQNn4/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/Eji5EXsQNn4/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/xwo9kFowySSB5Rs1kW133aPZuUc\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "fKD92U6-JkA"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-13T15:49:00.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus: Thirteen die at Stanley care home - BBC News",
+    "description": "Thirteen residents of a County Durham care home have now died after displaying symptoms of coronavirus. Managers at Stanley Park care home in Stanley said ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/fKD92U6-JkA/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/fKD92U6-JkA/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/fKD92U6-JkA/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/LxK_XICPLiYmgiQdXRA-fKQFPhs\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "3HA9euQTCiU"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-11T17:23:01.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Patel fights off PPE criticism as death toll rises - BBC News",
+    "description": "The government is urging people to stay at home over Easter to curb the spread of the virus, despite warm and sunny weather across parts of the UK.",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/3HA9euQTCiU/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/3HA9euQTCiU/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/3HA9euQTCiU/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/7aQXYU1t2zpMZNnXkqI7yGusgxU\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "4__TsCjQoT8"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-12T21:39:53.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus: more than 10,000 deaths as senior adviser says UK may be worst hit in Europe - BBC News",
+    "description": "10612 people have now died in hospital in the UK after testing positive for coronavirus. The figure does not include people who have died in care homes or in ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/4__TsCjQoT8/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/4__TsCjQoT8/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/4__TsCjQoT8/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/Y0hYNM7-BkRirmi6GOyO66LM6T4\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "CVBY0EJYxP4"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-10T19:28:23.000Z",
+    "channelId": "UCCj956IF62FbT7Gouszaj9w",
+    "title": "Coronavirus: &#39;Herculean effort&#39; to provide NHS protective gear 🔴 @BBC News - BBC",
+    "description": "Subscribe and to OFFICIAL BBC YouTube https://bit.ly/2IXqEIn Stream original BBC programmes FIRST on BBC iPlayer https://bbc.in/2J18jYJ ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/CVBY0EJYxP4/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/CVBY0EJYxP4/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/CVBY0EJYxP4/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/SCxGXXHeHqRn7BRY99qxW7JFQLU\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "ie6lRKAdvuY"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-12T08:54:45.000Z",
+    "channelId": "UCCj956IF62FbT7Gouszaj9w",
+    "title": "Coronavirus: Bill Gates interview @BBC Breakfast - BBC",
+    "description": "Subscribe and to OFFICIAL BBC YouTube https://bit.ly/2IXqEIn Stream original BBC programmes FIRST on BBC iPlayer https://bbc.in/2J18jYJ ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/ie6lRKAdvuY/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/ie6lRKAdvuY/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/ie6lRKAdvuY/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/KLSS0P_g0XfJfyPmwTbGN43VMVw\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "UOyHC8RTI5E"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-08T17:41:13.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus deaths in UK hospitals now over 7,000 - BBC News",
+    "description": "750m to be split between small local charities, including hospices, and bigger organisations such as Oxfam and Age UK Total number of deaths in UK hospitals ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/UOyHC8RTI5E/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/UOyHC8RTI5E/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/UOyHC8RTI5E/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/_5IcTFhFAK4VJM1iKtxqEzEI3uA\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "IMFZ1yhh2Qs"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-10T09:17:25.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus: US weekly jobless claims hit 6.6 million - BBC News",
+    "description": "The number of Americans seeking unemployment benefits has surged for a third week as the economic toll tied to the coronavirus pandemic intensifies.",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/IMFZ1yhh2Qs/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/IMFZ1yhh2Qs/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/IMFZ1yhh2Qs/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/HEOOJd4lPPyx8IaZdxicG2QIL4o\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "mHcfO52ErbA"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-09T16:41:56.000Z",
+    "channelId": "UCCj956IF62FbT7Gouszaj9w",
+    "title": "Coronavirus: Too early to lift measures - Raab 🔴 @BBC News - BBC",
+    "description": "Subscribe and to OFFICIAL BBC YouTube https://bit.ly/2IXqEIn Stream original BBC programmes FIRST on BBC iPlayer https://bbc.in/2J18jYJ ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/mHcfO52ErbA/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/mHcfO52ErbA/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/mHcfO52ErbA/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/ltbhPuCq50BWb6NdJNwzMIpd02w\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "iejGYFpTGlg"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-11T10:53:04.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus: US death toll passes 2,000 in a single day - BBC News",
+    "description": "The US has become the first country in the world to record more than 2000 coronavirus deaths in a single day. Figures from Johns Hopkins University show ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/iejGYFpTGlg/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/iejGYFpTGlg/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/iejGYFpTGlg/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/kubYi5AYaeyfTjRY02WZFb1xipE\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "IQdYDkwtvoo"
+   },
+   "snippet": {
+    "publishedAt": "2020-03-13T22:41:09.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus: Europe at the epicentre of the pandemic - BBC News",
+    "description": "The World Health Organisation says Europe is now the epicentre, of the global coronavirus pandemic. The news emerged as organised sport, both professional ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/IQdYDkwtvoo/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/IQdYDkwtvoo/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/IQdYDkwtvoo/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/6r_veaX8luHwbOR1VLBNdS__GMc\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "vuoNLu_1AQw"
+   },
+   "snippet": {
+    "publishedAt": "2020-03-30T14:59:10.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus: Spain reports more than 800 new deaths  - BBC News",
+    "description": "Spain has reported 812 new deaths related to coronavirus in the past 24 hours. Authorities say 6398 more people have been infected. The growth in coronavirus ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/vuoNLu_1AQw/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/vuoNLu_1AQw/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/vuoNLu_1AQw/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/ftMdcjz9DoeD7qX9JOYmf1T9m54\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "Axeod-zrlLY"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-13T17:20:32.000Z",
+    "channelId": "UCN7B-QD0Qgn2boVH5Q0pOWg",
+    "title": "क्या पाकिस्तान COVID-19 को बना रहा है हथियार ? BBC DUNIYA with Sarika (BBC Hindi)",
+    "description": "भारतीय सेना के एक बड़े अधिकारी का पाकिस्तान पर गंभीर आरोप. #CoronaVirus #Pakistan #India #Covid19...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/Axeod-zrlLY/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/Axeod-zrlLY/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/Axeod-zrlLY/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News Hindi",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/JoEKbkztm99Mh06R99hdnRL6dXs\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "siBLLsNfceU"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-09T22:04:51.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus warning: economic damage worse than Great Depression - BBC News",
+    "description": "The coronavirus pandemic will cause the worst global economic downturn since the Great Depression almost a century ago. That is the warning from the ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/siBLLsNfceU/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/siBLLsNfceU/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/siBLLsNfceU/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/1yfHtUD093lGH71WnHl7dilfAwA\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "vKJqOtwu-9o"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-09T13:39:50.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus: EU could fail over outbreak, warns Italy&#39;s Giuseppe Conte - BBC News",
+    "description": "Italy's prime minister has told the BBC that the European Union risks failing as a project in the coronavirus crisis. Giuseppe Conte says the EU must act in an ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/vKJqOtwu-9o/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/vKJqOtwu-9o/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/vKJqOtwu-9o/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/BZmcb71pE7acQq1n_kn4VMdpyqM\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "K1MLNCpUVxE"
+   },
+   "snippet": {
+    "publishedAt": "2020-03-15T10:06:47.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus Explained: What is the impact? - BBC News",
+    "description": "Governments around the world take increasingly drastic measures to manage the coronavirus pandemic. More countries have announced that schools will be ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/K1MLNCpUVxE/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/K1MLNCpUVxE/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/K1MLNCpUVxE/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/6Zw3SMaO5AXIuISZ_qz5dL3QNIY\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "DSuwaZEF9ZY"
+   },
+   "snippet": {
+    "publishedAt": "2020-03-20T09:13:41.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus: How bad is the situation in Europe? - BBC News",
+    "description": "The number of people dying from coronavirus in Italy has risen by 475 in one day to nearly 3000 - the biggest increase since the outbreak. There are a total of ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/DSuwaZEF9ZY/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/DSuwaZEF9ZY/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/DSuwaZEF9ZY/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/quiDTYDKAWCwhLnpwP5hJEfz-Bo\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "wE4Cmr1j0tA"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-05T19:11:25.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus: The Queen gives special address during pandemic  - BBC News",
+    "description": "The Queen speaks of “a time of disruption in the life of our country” as she addresses the UK in a rare televised speech. In a message recorded at Windsor ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/wE4Cmr1j0tA/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/wE4Cmr1j0tA/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/wE4Cmr1j0tA/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/jeujEAiGWD_UY-RMAzCS4La9OC4\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "ugs_aCBKs1g"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-04T11:18:54.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus: &quot;This is not a video game, it&#39;s real&quot; - BBC News",
+    "description": "In France the number of deaths from Coronavirus continues to rise, 600 deaths recorded in just 24 hours police are strictly enforcing the government's tough ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/ugs_aCBKs1g/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/ugs_aCBKs1g/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/ugs_aCBKs1g/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/E4sSEajZB3FwnYNYgV8Nms0AdTE\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "Yoz3GNGiY40"
+   },
+   "snippet": {
+    "publishedAt": "2020-03-27T23:32:53.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus deaths rising fast in Europe and US - BBC News",
+    "description": "Coronavirus is claiming more lives across Europe and in the United States. Italy is seeing the fastest rise in deaths since the beginning of the outbreak, almost ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/Yoz3GNGiY40/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/Yoz3GNGiY40/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/Yoz3GNGiY40/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/EjqOSBMMVfRqUqzdQTAolEm_xzI\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "thFnhzDXOPI"
+   },
+   "snippet": {
+    "publishedAt": "2020-03-29T15:53:38.000Z",
+    "channelId": "UCCj956IF62FbT7Gouszaj9w",
+    "title": "Coronavirus: All parts of UK &#39;on emergency footing&#39; - minister 🔴 @BBC News - BBC",
+    "description": "Subscribe and to OFFICIAL BBC YouTube https://bit.ly/2IXqEIn Stream original BBC programmes FIRST on BBC iPlayer https://bbc.in/2J18jYJ ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/thFnhzDXOPI/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/thFnhzDXOPI/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/thFnhzDXOPI/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/w2YQFLUgowxovSic3VjjAusyGYo\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "JjO5jewQUZk"
+   },
+   "snippet": {
+    "publishedAt": "2020-03-31T13:55:41.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "US death rates v UK, Italy and South Korea - BBC News",
+    "description": "The US has seen its cases spike dramatically in recent days and these graphs show what could be in store. Please subscribe HERE http://bit.ly/1rbfUog.",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/JjO5jewQUZk/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/JjO5jewQUZk/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/JjO5jewQUZk/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/g29ROYaBQT7O5ZqwFTnvxIQqd9c\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "D9WPDI0tQCo"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-05T22:01:16.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus: Boris Johnson admitted to hospital as the Queen delivers message of hope - BBC News",
+    "description": "Boris Johnson has been admitted to hospital ten days after confirming he has coronavirus. Downing Street said it was a “precautionary” move rather than an ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/D9WPDI0tQCo/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/D9WPDI0tQCo/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/D9WPDI0tQCo/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/IBEbtxYkEC2X_YqZg3o2H7gxMoo\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "eCKqNtGX-kI"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-04T18:18:29.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus: Five-year-old among latest UK victims - BBC News",
+    "description": "A five-year-old child with underlying health conditions is among those with coronavirus whose deaths were reported in the past day, Cabinet Office Minister ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/eCKqNtGX-kI/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/eCKqNtGX-kI/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/eCKqNtGX-kI/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/doB6BT2Kpfduiy7GBflNsarODqs\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "hvebI-CxXuQ"
+   },
+   "snippet": {
+    "publishedAt": "2020-03-31T17:00:47.000Z",
+    "channelId": "UCCj956IF62FbT7Gouszaj9w",
+    "title": "Coronavirus: UK &#39;not out of the woods&#39; - UK Government Briefing 🔴 @BBC News - BBC",
+    "description": "Subscribe and to OFFICIAL BBC YouTube https://bit.ly/2IXqEIn Stream original BBC programmes FIRST on BBC iPlayer https://bbc.in/2J18jYJ ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/hvebI-CxXuQ/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/hvebI-CxXuQ/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/hvebI-CxXuQ/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/CEVYuJv0puq2XoTS97sReeVdt5g\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "CoyEjyShntE"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-13T14:28:20.000Z",
+    "channelId": "UCN7B-QD0Qgn2boVH5Q0pOWg",
+    "title": "Corona Virus पर BBC Hindi का ख़ास Digital Bulletin: कोरोना दिनभर (BBC Hindi)",
+    "description": "कोरोना वायरस पर बीबीसी हिंदी की खास पेशकश, डिजिटल रेडियो के रूप में. इसका...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/CoyEjyShntE/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/CoyEjyShntE/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/CoyEjyShntE/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News Hindi",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/np8mB4qH4E8S92K_WHE0_XlEtkQ\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "4IuWRObuh-E"
+   },
+   "snippet": {
+    "publishedAt": "2020-03-23T11:30:50.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus: Spain death toll tops 2,000 - BBC News",
+    "description": "The death toll in Spain has reached 2182, the government has announced, after 462 people passed away in the past 24 hours. In Germany, Chancellor Angela ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/4IuWRObuh-E/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/4IuWRObuh-E/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/4IuWRObuh-E/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/1RaTIjRaTo8UyPF7UzU8hevFYd4\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "UIJ6Gefld_A"
+   },
+   "snippet": {
+    "publishedAt": "2020-03-26T11:52:06.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus: A quarter of the world’s population in lockdown - BBC News",
+    "description": "Prime Minister Narendra Modi has told India's population of 1.3 billion people to stay at home. The lockdown is currently planned for 3 weeks. More than 2.6 ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/UIJ6Gefld_A/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/UIJ6Gefld_A/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/UIJ6Gefld_A/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/MCK2utl8QFASefms13SRWyHNepY\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "QvZ6eWkfkrU"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-03T19:09:17.000Z",
+    "channelId": "UCCj956IF62FbT7Gouszaj9w",
+    "title": "Coronavirus: Key message from UK government: Stay at home 🔴  @BBC News - BBC",
+    "description": "Subscribe and to OFFICIAL BBC YouTube https://bit.ly/2IXqEIn Stream original BBC programmes FIRST on BBC iPlayer https://bbc.in/2J18jYJ ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/QvZ6eWkfkrU/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/QvZ6eWkfkrU/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/QvZ6eWkfkrU/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/UR_OCltpUIk0I-wNlh1oeHPQ__8\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "KbhcCT8bKyw"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-13T06:42:49.000Z",
+    "channelId": "UCvm8V4Dwtz0fbPGbpk7RYAg",
+    "title": "Coronavirus Daily News Brief - 13 April 2020 – BBCURDU",
+    "description": "Coronavirus Daily News Brief - 13 April 2020 – BBCURDU CLICK HERE to subscribe to BBC Urdu : http://bbc.in/1GsJCMR.",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/KbhcCT8bKyw/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/KbhcCT8bKyw/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/KbhcCT8bKyw/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News اردو",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/u4fwpv01FUubiRuczzU3Z4Ht2pA\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "utehYl3YSz0"
+   },
+   "snippet": {
+    "publishedAt": "2020-03-17T22:52:29.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus: Europe shuts down its borders - BBC News",
+    "description": "European leaders have moved to shut the EU's external borders as they grapple with the quickly spreading virus. The measure is expected to apply to 26 EU ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/utehYl3YSz0/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/utehYl3YSz0/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/utehYl3YSz0/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"tnVOtk4NeGU6nDncDTE5m9SmuHc/U72x_kqN5XlasVzb36uUwACgqrY\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "xfzkRs4J6WY"
+   },
+   "snippet": {
+    "publishedAt": "2020-04-11T22:15:54.000Z",
+    "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+    "title": "Coronavirus:  US first country to record over 2,000 deaths in a single day - BBC News",
+    "description": "The United States has become first country in the world to record more than 2000 deaths associated with coronavirus in a single day. There have now been ...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/xfzkRs4J6WY/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/xfzkRs4J6WY/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/xfzkRs4J6WY/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "BBC News",
+    "liveBroadcastContent": "none"
+   }
+  }
+ ]
+}

@@ -72,26 +72,11 @@ class DbModel {
         return [];
     }
 
-    public function get_keyword_random($campaign_id = null) {
-        $where = '';
-        if ($campaign_id) $where = 'WHERE campaign_id = ' . $campaign_id;
-        $query = "SELECT * FROM keyword  $where  ORDER BY RAND() LIMIT 1";
+    public function get_groups_random_max($campaign_id, $type, $maxItems) {
+        $query = "SELECT * FROM groups WHERE campaign_id = $campaign_id AND type = $type ORDER BY RAND() LIMIT $maxItems";
         $result = mysqli_query($this->link, $query);
         if ($result) {
-            $return = mysqli_fetch_assoc($result);
-            if ($return) return $return;
-        }
-        return [];
-    }
-    
-    public function get_comment_by_id($id) {
-		
-        $query = "SELECT * FROM comment WHERE id = '$id' LIMIT 1";
-		
-        $result = mysqli_query($this->link, $query);
-		
-        if ($result) {
-            $return = mysqli_fetch_assoc($result);
+            $return = mysqli_fetch_all($result, MYSQLI_ASSOC);
             if ($return) return $return;
         }
         return [];
@@ -110,36 +95,6 @@ class DbModel {
         return [];
     }
 
-    public function get_comment_random($campaign_id = null, $limit_number = 4, $type = 1) {
-
-        $where = '';
-        if ($campaign_id) $where = ' campaign_id = ' . $campaign_id . ' AND ';
-
-        $query = "SELECT * FROM comment WHERE  $where  type = $type ORDER BY RAND() LIMIT $limit_number";
-
-        $result = mysqli_query($this->link, $query);
-        if ($result) {
-            $return = mysqli_fetch_all($result, MYSQLI_ASSOC);
-            if ($return) return $return;
-        }
-        return [];
-    }
-    
-    public function insert_url($uid, $url, $type = 1) {
-        
-        $query = '  INSERT INTO url(uid, url, type, created)
-                        VALUES (
-                        "' . $uid . '",
-                        "' . urlencode($url) . '",
-                        "' . $type . '",
-                        "' . time() . '")';
-        
-        $result = mysqli_query($this->link, $query);
-
-        return $result;
-        
-    }
-
     public function insert_comment($campaign_id, $content, $type = 1) {
         $query = '  INSERT INTO comment(campaign_id, content, type)
                         VALUES (
@@ -156,18 +111,6 @@ class DbModel {
                         "' . mysqli_real_escape_string($this->link, $content) . '", ' . $campaign_id . ')';
         $result = mysqli_query($this->link, $query);
         return $result;
-    }
-
-    public function get_all_keyword($campaign_id = null) {
-        $where = '';
-        if ($campaign_id) $where = 'WHERE campaign_id = ' . $campaign_id;
-        $query = "SELECT * FROM keyword  $where  order by id DESC";
-        $result = mysqli_query($this->link, $query);
-        if ($result) {
-            $return = mysqli_fetch_all($result, MYSQLI_ASSOC);
-            if ($return) return $return;
-        }
-        return [];
     }
 
     public function get_all_group($campaign_id = null) {
@@ -242,14 +185,14 @@ class DbModel {
         $group_name = mysqli_real_escape_string($this->link, $data['group_name'] ?? '');
         $keyword_list = mysqli_real_escape_string($this->link, $data['keyword_list'] ?? '');
         $comment_list = mysqli_real_escape_string($this->link, $data['comment_list'] ?? '');
-        $channel = mysqli_real_escape_string($this->link, $data['channel'] ?? '');
+        $custom_html = mysqli_real_escape_string($this->link, $data['custom_html'] ?? '');
         $url = mysqli_real_escape_string($this->link, $data['url'] ?? '');
 
         $query = '  UPDATE `groups` 
                     SET group_name = "' . $group_name . '",
                     keyword_list = "' . $keyword_list . '",
                     comment_list = "' . $comment_list . '",
-                    channel = "' . $channel . '",
+                    custom_html = "' . $custom_html . '",
                     url = "' . urlencode($url) . '"
                     WHERE id = ' . $group_id;
         $result = mysqli_query($this->link, $query);
@@ -262,17 +205,17 @@ class DbModel {
         $type = $data['type'] ?? 0;
         $keyword_list = mysqli_real_escape_string($this->link, $data['keyword_list'] ?? '');
         $comment_list = mysqli_real_escape_string($this->link, $data['comment_list'] ?? '');
-        $channel = mysqli_real_escape_string($this->link, $data['channel'] ?? '');
         $url = mysqli_real_escape_string($this->link, $data['url'] ?? '');
+        $custom_html = mysqli_real_escape_string($this->link, $data['custom_html'] ?? '');
 
-        $query = '  INSERT INTO `groups`(group_name, campaign_id, `type`, keyword_list, comment_list, `channel`, url)
+        $query = '  INSERT INTO `groups`(group_name, campaign_id, `type`, keyword_list, comment_list, `custom_html`, url)
                         VALUES (
                         "' . $group_name . '",
                         "' . $campaign_id . '",
                         "' . $type . '",
                         "' . $keyword_list . '",
                         "' . $comment_list . '",
-                        "' . $channel . '",
+                        "' . $custom_html . '",
                         "' . urlencode($url) . '"
                         )';
         $result = mysqli_query($this->link, $query);

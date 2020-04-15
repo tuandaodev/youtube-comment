@@ -61,7 +61,6 @@ $verifyTimes = $campaign['verify_number'] ?? 0;
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="assets/styles.css" media="all">
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
     </head>
@@ -148,7 +147,9 @@ $verifyTimes = $campaign['verify_number'] ?? 0;
             }
         }
     </script>
-
+    <style>
+        *{box-sizing:border-box}html{text-align:center}body{background:none transparent;padding:10px;margin:0;display:inline-block}body::-webkit-scrollbar{width:.5em}body::-webkit-scrollbar-track{-webkit-box-shadow:inset 0 0 .5em rgba(0,0,0,.3)}body::-webkit-scrollbar-thumb{background-color:darkgrey;outline:1px solid slategrey}.clr{clear:both}.wrapper{margin:auto;max-width:100%;text-align:center}.showmehow_toggle{margin:10px auto;cursor:pointer;padding:5px;color:#000}.showmehow_toggle>*{color:#000}.showmehow{display:none}.showmehow video{width:100%}.videos{margin:20px 0;border-collapse:collapse;max-width:100%}.videos td{border:solid 1px #61798e;padding:5px}.videos tr td:first-child{min-width:100px}.videos tr td:last-child{width:100%}@media (min-width: 767px){.img-responsive{width:70%}}@media (max-width: 768px){.img-responsive{width:100%}}
+    </style>
     </body>
     </html>
 
@@ -442,9 +443,38 @@ function get_video_image($video_id)
 {
     if (!$video_id) return '';
     return "https://i.ytimg.com/vi/$video_id/mqdefault.jpg";
+    /*
+    $response = load_cache_video($video_id);
+    if (!$response) {
+        $url = 'https://www.googleapis.com/youtube/v3/videos';
+        $data = [
+            'part' => 'snippet',
+            'id' => $video_id,
+            'key' => DEVELOPER_KEY
+        ];
+        $response = api_call($url, $data);
+        if ($response) {
+            cache_video($video_id, $response);
+        }
+    }
+    $response = json_decode($response, true) ?? [];
+
+    $videoArr = [];
+    if (isset($response['items']) && !empty($response['items'])) {
+        $videoArr = $response['items'][0];
+    }
+    $thumb = '';
+    if (isset($videoArr['snippet']['thumbnails']['medium']['url']) && !empty($videoArr['snippet']['thumbnails']['medium']['url'])) {
+        $thumb = $videoArr['snippet']['thumbnails']['medium']['url'];
+    }
+    return $thumb;
+    */
 }
 
 function youtube_get_comment($keyword, $video_id) {
+
+//    $result = load_cache_comment($keyword, $video_id);
+//    if ($result) return $result;
 
     $url = 'https://www.googleapis.com/youtube/v3/commentThreads';
     $data = [
@@ -460,9 +490,14 @@ function youtube_get_comment($keyword, $video_id) {
     $result = [];
     if (isset($data_single['items'])) {
         foreach ($data_single['items'] as $comment) {
+//            $date = strtotime($comment['snippet']['topLevelComment']['snippet']['publishedAt']);
+//            echo date("Y-m-d H:i:s", $date);
             $result[] = $comment['id'];
         }
     }
+//    if ($result) {
+//        cache_comment($keyword, $video_id, $result);
+//    }
     return $result;
 }
 
@@ -499,6 +534,34 @@ function cache_keyword($keyword, $response) {
     try {
         $file_name = md5($keyword);
         $folder_path = __DIR__ . '/data/keywords';
+        $file_path = $folder_path . '/' . $file_name;
+        if (!file_exists($folder_path)) {
+            mkdir($folder_path, 0755, true);
+        }
+        $file = fopen($file_path, "w");
+        $body = $response;
+        fwrite($file, $body);
+        fclose($file);
+    } catch (Exception $ex) {
+    }
+}
+
+function load_cache_video($video_id) {
+    $file_name = md5($video_id);
+    $file_path = __DIR__ . '/data/videos/' . $file_name;
+    $result = @file_get_contents($file_path);
+    if ($result) {
+        if (filectime($file_path) + 3600 < time()) {
+            @unlink($file_path);
+        }
+    }
+    return $result;
+}
+
+function cache_video($video_id, $response) {
+    try {
+        $file_name = md5($video_id);
+        $folder_path = __DIR__ . '/data/videos';
         $file_path = $folder_path . '/' . $file_name;
         if (!file_exists($folder_path)) {
             mkdir($folder_path, 0755, true);

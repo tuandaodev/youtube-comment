@@ -98,12 +98,12 @@ $settings = $dbModel->get_campaign_options_all($campaign_id);
                                     <li role="presentation"><a href="#specific-video"
                                                                aria-controls="specific-video" role="tab"
                                                                data-toggle="tab">Specific Video</a></li>
-                                    <li role="presentation"><a href="#specific-comment-link"
-                                                               aria-controls="specific-comment-link" role="tab"
-                                                               data-toggle="tab">Specific Comment Link</a></li>
-                                    <li role="presentation"><a href="#custom-tasks"
-                                                               aria-controls="custom-tasks" role="tab"
-                                                               data-toggle="tab">Custom Tasks</a></li>
+                                    <li role="presentation">
+                                        <a href="#specific-comment-link" aria-controls="specific-comment-link" role="tab" data-toggle="tab">Specific Comment Link</a>
+                                    </li>
+                                    <li role="presentation"><a href="#custom-tasks-1" aria-controls="custom-tasks-1" role="tab" data-toggle="tab">Custom Tasks 1</a></li>
+                                    <li role="presentation"><a href="#custom-tasks-2" aria-controls="custom-tasks-2" role="tab" data-toggle="tab">Custom Tasks 2</a></li>
+                                    <li role="presentation"><a href="#custom-tasks-3" aria-controls="custom-tasks-3" role="tab" data-toggle="tab">Custom Tasks 3</a></li>
                                 </ul>
                                 <!-- Tab panes -->
                                 <div class="tab-content">
@@ -127,9 +127,19 @@ $settings = $dbModel->get_campaign_options_all($campaign_id);
                                             <?php renderOptionItem($campaign_id, 4, $settings) ?>
                                         </div>
                                     </div>
-                                    <div role="tabpanel" class="tab-pane" id="custom-tasks">
+                                    <div role="tabpanel" class="tab-pane" id="custom-tasks-1">
                                         <div class="panel-body">
                                             <?php renderOptionItem($campaign_id, 5, $settings) ?>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane" id="custom-tasks-2">
+                                        <div class="panel-body">
+                                            <?php renderOptionItem($campaign_id, 6, $settings) ?>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane" id="custom-tasks-3">
+                                        <div class="panel-body">
+                                            <?php renderOptionItem($campaign_id, 7, $settings) ?>
                                         </div>
                                     </div>
                                 </div>
