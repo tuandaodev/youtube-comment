@@ -2,8 +2,10 @@
 
 if (!defined('DEVELOPER_KEY')) define('DEVELOPER_KEY', 'AIzaSyBQNDAGcbVFBSdFNzbUP1SOgn-mkA7aN-U');
 
-date_default_timezone_set('Asia/Ho_Chi_Minh');
+require_once 'vendor/autoload.php';
+use RedisClient\RedisClient;
 
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 $all_data = @file_get_contents('data.json');
 $all_data = json_decode($all_data, true);
 
@@ -66,6 +68,9 @@ $verifyTimes = $campaign['verify_number'] ?? 0;
         <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
     </head>
     <body>
+    <style>
+        *{box-sizing:border-box}html{text-align:center}body{background:none transparent;padding:10px;margin:0;display:inline-block}body::-webkit-scrollbar{width:.5em}body::-webkit-scrollbar-track{-webkit-box-shadow:inset 0 0 .5em rgba(0,0,0,.3)}body::-webkit-scrollbar-thumb{background-color:#a9a9a9;outline:1px solid #708090}.clr{clear:both}.wrapper{margin:auto;max-width:100%;text-align:center}.showmehow_toggle{margin:10px auto;cursor:pointer;padding:5px;color:#000}.showmehow_toggle>*{color:#000}.showmehow{display:none}.showmehow video{width:100%}.videos{margin:20px 0;border-collapse:collapse;max-width:100%}.videos td{border:solid 1px #61798e;padding:5px}.videos tr td:first-child{min-width:100px}.videos tr td:last-child{width:100%}@media (min-width:767px){.img-responsive{width:70%}}@media (max-width:768px){.img-responsive{width:100%}}
+    </style>
     <div class="wrapper">
 
         <?php if (isset($settings['header_html']) && !empty($settings['header_html'])): ?>
@@ -309,19 +314,7 @@ function processDataType2($campaign, $group, $settings) {
 
     $search_key_word = $group['keyword'] ?? '';
     $result = youtube_get_comments($keyword, $search_key_word, $maxItems);
-    $video_list = $result['comment_list'] ?? [];
-    shuffle($video_list);
-    $url_list = [];
-    $video_exists = [];
-    $count = 0;
-    foreach ($video_list as $video) {
-        if ($count >= $maxItems) break;
-        if (!in_array($video['video_id'], $video_exists)) {
-            $url_list[] = $video;
-            $video_exists[] = $video['video_id'];
-            $count++;
-        }
-    }
+    $url_list = $result['comment_list'] ?? [];
 
     shuffle($comment_list);
     $comment_list = array_slice($comment_list, 0, $maxItems);
@@ -371,9 +364,13 @@ function processDataTypeCustom($campaign, $groups, $settings) {
 }
 
 function youtube_get_videos($keyword) {
+    $redis = new MyRedis();
+    $video_list = $redis->get(md5($keyword));
+    if ($video_list) {
+        $video_list = json_decode($video_list, true);
+    }
 
-    $response = load_cache_keyword($keyword);
-    if (!$response) {
+    if (!$video_list) {
         $url = 'https://www.googleapis.com/youtube/v3/search';
         $data = [
             'part' => 'id,snippet',
@@ -382,89 +379,185 @@ function youtube_get_videos($keyword) {
             'key' => DEVELOPER_KEY
         ];
         $response = api_call($url, $data);
-        if ($response) {
-            cache_keyword($keyword, $response);
-        }
-    }
-    $searchResponse = json_decode($response, true) ?? [];
+        $searchResponse = json_decode($response, true) ?? [];
 
-    foreach ($searchResponse['items'] as $searchResult) {
-        if ($searchResult['id']['kind'] == 'youtube#video') {
-            $thumb = '';
-            if (isset($searchResult['snippet']['thumbnails']['medium']['url']) && !empty($searchResult['snippet']['thumbnails']['medium']['url'])) {
-                $thumb = $searchResult['snippet']['thumbnails']['medium']['url'];
+        $video_list = [];
+        foreach ($searchResponse['items'] as $searchResult) {
+            if ($searchResult['id']['kind'] == 'youtube#video') {
+                $thumb = '';
+                if (isset($searchResult['snippet']['thumbnails']['medium']['url']) && !empty($searchResult['snippet']['thumbnails']['medium']['url'])) {
+                    $thumb = $searchResult['snippet']['thumbnails']['medium']['url'];
+                }
+                $video_list[$searchResult['id']['videoId']] = array(
+                    'id' => $searchResult['id']['videoId'],
+                    'url' => 'https://www.youtube.com/watch?v=' . $searchResult['id']['videoId'],
+                    'image' => $thumb,
+                );
             }
-            $video_list[$searchResult['id']['videoId']] = array(
-                'id' => $searchResult['id']['videoId'],
-                'url' => 'https://www.youtube.com/watch?v=' . $searchResult['id']['videoId'],
-                'image' => $thumb,
-            );
-            $list_id[] = $searchResult['id']['videoId'];
+        }
+        if ($video_list) {
+            $redis->set(md5($keyword), json_encode($video_list));
         }
     }
+
     $return['video_list'] = $video_list;
     return $return;
 }
 
 
-function youtube_get_comments($keyword, $search_key_word, $maxVideos, $maxResults = 50)
+function youtube_get_comments($keyword, $search_key_word, $maxVideos)
 {
     $video_list = youtube_get_videos($keyword);
     $video_list = $video_list['video_list'] ?? [];
-    $list_id = array_column($video_list, 'id');
-    shuffle($list_id);
+    $video_list_id = array_column($video_list, 'id');
 
-    $comment_list = [];
+    $redis = new MyRedis();
+    $comment_id_list = $redis->get('cmt_' . md5($keyword));
+    if ($comment_id_list) $comment_id_list = json_decode($comment_id_list, true);
 
-    $count_success = 0;
-    foreach ($list_id as $video_id) {
-        $temp = youtube_get_comment($video_id, $search_key_word);
-        if (!empty($temp)) {
-            $count_success++;
-            foreach ($temp as $comment_id) {
-                $_temp['video_id'] = $video_id;
-                $_temp['url'] = "https://www.youtube.com/watch?v=$video_id&lc=$comment_id";
-                $_temp['image'] = $video_list[$video_id]['image'] ?? '';
-                $comment_list[] = $_temp;
+    if (!$comment_id_list && !is_array($comment_id_list)) {
+        $request_list = [];
+        foreach ($video_list_id as $video_id) {
+            $url = 'https://www.googleapis.com/youtube/v3/commentThreads';
+            $data = [
+                'part' => 'id,snippet',
+                'videoId' => $video_id,
+                'maxResults' => 50,
+                'order' => 'relevance',
+                'key' => DEVELOPER_KEY,
+                'searchTerms' => $search_key_word
+            ];
+            if (!empty($data) && is_array($data)) {
+                $request_list[] = $url . '?' . http_build_query($data, '', '&');
             }
         }
-        if ($count_success == $maxVideos) break;
+
+        $comment_id_list = runRequestsCustomConvertFunc($request_list, $search_key_word);
+        $redis->set('cmt_' . md5($keyword), json_encode($comment_id_list));
     }
+
+    $comment_list = [];
+    $count_success = 0;
+    $exists_video_id = [];
+    if (!empty($comment_id_list)) {
+        shuffle($comment_id_list);
+        foreach ($comment_id_list as $comment) {
+            $video_id = $comment['video_id'];
+            if (!in_array($video_id, $exists_video_id)) {
+                $exists_video_id[] = $video_id;
+                $_temp['video_id'] = $video_id;
+                $_temp['url'] = "https://www.youtube.com/watch?v={$video_id}&lc={$comment['comment_id']}";
+                $_temp['image'] = $video_list[$video_id]['image'] ?? '';
+                $comment_list[] = $_temp;
+                $count_success++;
+                if ($count_success == $maxVideos) break;
+            }
+        }
+        // Load more data
+        if ($count_success < $maxVideos) {
+            foreach ($comment_id_list as $comment) {
+                $video_id = $comment['video_id'];
+                $_temp['video_id'] = $video_id;
+                $_temp['url'] = "https://www.youtube.com/watch?v={$video_id}&lc={$comment['comment_id']}";
+                $_temp['image'] = $video_list[$video_id]['image'] ?? '';
+                $comment_list[] = $_temp;
+                $count_success++;
+                if ($count_success == $maxVideos) break;
+            }
+        }
+    }
+
     $return['comment_list'] = $comment_list;
 //        $return['video_list'] = $comment_list;
     return $return;
+}
+
+function runRequestsCustomConvertFunc($url_array, $search_key_word) {
+
+    $thread_width = 8;
+    $threads = 0;
+    $master = curl_multi_init();
+    $curl_opts = array(
+        CURLOPT_MAXREDIRS => 5,
+        CURLOPT_CONNECTTIMEOUT => 30,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_RETURNTRANSFER => TRUE);
+
+    $all_comment_ids = array();
+    $count = 0;
+    foreach($url_array as $url) {
+        $ch = curl_init();
+        $curl_opts[CURLOPT_URL] = $url;
+        curl_setopt_array($ch, $curl_opts);
+        curl_multi_add_handle($master, $ch); //push URL for single rec send into curl stack
+        $threads++;
+        $count++;
+        if($threads >= $thread_width) { //start running when stack is full to width
+            while($threads >= $thread_width) {
+                usleep(100);
+                while(($execrun = curl_multi_exec($master, $running)) === -1){}
+                curl_multi_select($master);
+                while($done = curl_multi_info_read($master)) {
+                    $api_result = curl_multi_getcontent($done['handle']);
+                    $api_result = json_decode($api_result, true);
+                    $comment_ids = reduce_comment_response($api_result, $search_key_word);
+                    $all_comment_ids = array_merge($all_comment_ids, $comment_ids);
+                    curl_multi_remove_handle($master, $done['handle']);
+                    curl_close($done['handle']);
+                    $threads--;
+                }
+            }
+        }
+    }
+    do { //finish sending remaining queue items when all have been added to curl
+        usleep(100);
+        while(($execrun = curl_multi_exec($master, $running)) === -1){}
+        curl_multi_select($master);
+        while($done = curl_multi_info_read($master)) {
+            $api_result = curl_multi_getcontent($done['handle']);
+            $api_result = json_decode($api_result, true) ?? [];
+            $comment_ids = reduce_comment_response($api_result, $search_key_word);
+            $all_comment_ids = array_merge($all_comment_ids, $comment_ids);
+            curl_multi_remove_handle($master, $done['handle']);
+            curl_close($done['handle']);
+            $threads--;
+        }
+    } while($running > 0);
+    curl_multi_close($master);
+    return $all_comment_ids;
+}
+
+function reduce_comment_response($data_single, $search_key_word) {
+    $result = [];
+    if (!$data_single) return $result;
+    if (isset($data_single['items'])) {
+        foreach ($data_single['items'] as $comment) {
+            $comment_text = $comment['snippet']['topLevelComment']['snippet']['textOriginal'] ?? '';
+            if ($search_key_word) {
+                if (strpos($comment_text, $search_key_word) !== false) {
+                    $video_id = $comment['snippet']['videoId'];
+                    $result[] = array(
+                        'video_id' => $video_id,
+                        'comment_id' => $comment['id']
+                    );
+                }
+            } else {
+                $video_id = $comment['snippet']['videoId'];
+                $result[] = array(
+                    'video_id' => $video_id,
+                    'comment_id' => $comment['id']
+                );
+            }
+        }
+    }
+    return $result;
 }
 
 function get_video_image($video_id)
 {
     if (!$video_id) return '';
     return "https://i.ytimg.com/vi/$video_id/mqdefault.jpg";
-}
-
-function youtube_get_comment($video_id, $search_key_word) {
-
-    $url = 'https://www.googleapis.com/youtube/v3/commentThreads';
-    $data = [
-        'part' => 'id,snippet',
-        'videoId' => $video_id,
-        'maxResults' => 50,
-        'order' => 'relevance',
-        'key' => DEVELOPER_KEY,
-        'searchTerms' => $search_key_word
-    ];
-    $response = api_call($url, $data);
-    $data_single = json_decode($response, true) ?? [];
-
-    $result = [];
-    if (isset($data_single['items'])) {
-        foreach ($data_single['items'] as $comment) {
-            $comment_text = $comment['snippet']['topLevelComment']['snippet']['textOriginal'] ?? '';
-            if (strpos($comment_text, $search_key_word) !== false) {
-                $result[] = $comment['id'];
-            }
-        }
-    }
-    return $result;
 }
 
 function api_call($url, $data = []) {
@@ -484,34 +577,6 @@ function api_call($url, $data = []) {
     return $response;
 }
 
-function load_cache_keyword($keyword) {
-    $file_name = md5($keyword);
-    $file_path = __DIR__ . '/data/keywords/' . $file_name;
-    $result = @file_get_contents($file_path);
-    if ($result) {
-        if (filectime($file_path) + 3600 < time()) {
-            @unlink($file_path);
-        }
-    }
-    return $result;
-}
-
-function cache_keyword($keyword, $response) {
-    try {
-        $file_name = md5($keyword);
-        $folder_path = __DIR__ . '/data/keywords';
-        $file_path = $folder_path . '/' . $file_name;
-        if (!file_exists($folder_path)) {
-            mkdir($folder_path, 0755, true);
-        }
-        $file = fopen($file_path, "w");
-        $body = $response;
-        fwrite($file, $body);
-        fclose($file);
-    } catch (Exception $ex) {
-    }
-}
-
 class Spintax
 {
     public function process($text)
@@ -528,5 +593,55 @@ class Spintax
         $text = $this->process($text[1]);
         $parts = explode('|', $text);
         return $parts[array_rand($parts)];
+    }
+}
+
+
+
+class MyRedis
+{
+    private $client = null;
+
+    public function __construct()
+    {
+        if (!$this->client) {
+            $this->client = new RedisClient([
+                'server' => '127.0.0.1:6379', // or 'unix:///tmp/redis.sock'
+                'timeout' => 2
+            ]);
+        }
+    }
+
+    function __destruct()
+    {
+        if ($this->client) {
+            $this->client->quit();
+            $this->client = null;
+        }
+    }
+
+    public function quit()
+    {
+        if ($this->client) {
+            $this->client->quit();
+            $this->client = null;
+        }
+    }
+
+    //Test function
+    public function ping()
+    {
+        echo $this->client->ping();
+    }
+
+    public function set($id, $value)
+    {
+        return $this->client->set($id, $value, 3600*6);
+    }
+
+    public function get($id)
+    {
+        $value = $this->client->get($id);
+        return ($value ? $value : null);
     }
 }

@@ -13,6 +13,7 @@ function export_data($data) {
         fclose($file);
 
         copy('export.php', 'export/index.php');
+        recurse_copy(__DIR__ . '/' . 'vendor', __DIR__ . '/export/' . 'vendor');
 
         $zipname = 'export.zip';
         if (file_exists($zipname)) @unlink($zipname);
@@ -46,4 +47,20 @@ function export_data($data) {
 
     } catch (Exception $ex) {
     }
+}
+
+function recurse_copy($src, $dst) {
+    $dir = opendir($src);
+    @mkdir($dst);
+    while(false !== ( $file = readdir($dir)) ) {
+        if (( $file != '.' ) && ( $file != '..' )) {
+            if ( is_dir($src . '/' . $file) ) {
+                recurse_copy($src . '/' . $file,$dst . '/' . $file);
+            }
+            else {
+                copy($src . '/' . $file,$dst . '/' . $file);
+            }
+        }
+    }
+    closedir($dir);
 }
