@@ -61,6 +61,20 @@ if (isset($_POST['action'])) {
             break;
         case 'update_campaign_content':
             $result = $dbModel->update_campaign_content($_POST);
+
+            $keyword_list = $_POST['keyword_list'] ?? '';
+            $keywords = explode("\n", str_replace("\r", "", $keyword_list));
+            $keywords = array_map('trim', $keywords);
+
+            $keys = [];
+            foreach ($keywords as $keyword) {
+                $keys[] = md5($keyword);
+                $keys[] = 'cmt_' . md5($keyword);
+            }
+            if ($keys) {
+                $redis = new MyRedis();
+                $redis->delete($keys);
+            }
             if ($result) {
                 $result = "<label>Cập nhật content thành công.</label>";
                 $return['status'] = 1;

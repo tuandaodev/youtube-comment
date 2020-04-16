@@ -364,7 +364,7 @@ function youtube_get_videos($keyword) {
         $data = [
             'part' => 'id,snippet',
             'q' => $keyword,
-            'maxResults' => 50,
+            'maxResults' => 20,
             'key' => DEVELOPER_KEY
         ];
         $response = api_call($url, $data);
@@ -411,7 +411,7 @@ function youtube_get_comments($keyword, $search_key_word, $maxVideos)
                 $data = [
                     'part' => 'id,snippet',
                     'videoId' => $video_id,
-                    'maxResults' => 50,
+                    'maxResults' => 20,
                     'order' => 'relevance',
                     'key' => DEVELOPER_KEY,
                     'searchTerms' => $search_key_word

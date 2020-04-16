@@ -1,5 +1,8 @@
 <?php
 
+require_once 'vendor/autoload.php';
+use RedisClient\RedisClient;
+
 function export_data($data) {
     try {
         $file_name = 'data.json';
@@ -63,4 +66,57 @@ function recurse_copy($src, $dst) {
         }
     }
     closedir($dir);
+}
+
+class MyRedis
+{
+    private $client = null;
+
+    public function __construct()
+    {
+        if (!$this->client) {
+            $this->client = new RedisClient([
+                'server' => '127.0.0.1:6379', // or 'unix:///tmp/redis.sock'
+//                'server' => 'unix:///home/streamap/.applicationmanager/redis.sock', // or 'unix:///tmp/redis.sock'
+                'timeout' => 2
+            ]);
+        }
+    }
+
+    function __destruct()
+    {
+        if ($this->client) {
+            $this->client->quit();
+            $this->client = null;
+        }
+    }
+
+    public function quit()
+    {
+        if ($this->client) {
+            $this->client->quit();
+            $this->client = null;
+        }
+    }
+
+    //Test function
+    public function ping()
+    {
+        echo $this->client->ping();
+    }
+
+    public function set($id, $value)
+    {
+        return $this->client->set($id, $value, 3600*6);
+    }
+
+    public function get($id)
+    {
+        $value = $this->client->get($id);
+        return ($value ? $value : null);
+    }
+
+    public function delete($id) {
+        return $this->client->del($id);
+    }
 }
