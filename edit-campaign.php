@@ -41,7 +41,7 @@ $settings = $dbModel->get_campaign_options_all($campaign_id);
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Landing Page URL</label>
-                                        <input class="form-control" name="landing_page"
+                                        <input class="form-control" name="landing_page" type="url"
                                                value="<?php echo urldecode($campaign['landing_page']) ?>"
                                                maxlength="512"
                                                placeholder="Nhập trang đích của chiến dịch">
